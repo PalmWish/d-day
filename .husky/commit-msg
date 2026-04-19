@@ -1,1 +1,14 @@
-npx --no -- commitlint --edit "$1"
+#!/usr/bin/env sh
+
+if ! npx --no -- commitlint --edit "$1"; then
+	printf "\nCommit message format ต้องเป็น:\n"
+	printf "  <type>(optional-scope): <subject>\n\n"
+	printf "Keyword ที่แนะนำ:\n"
+	printf "  feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert\n\n"
+	printf "ตัวอย่าง:\n"
+	printf "  feat(auth): add login endpoint\n"
+	printf "  fix: handle null user profile\n"
+	printf "  chore: update dependencies\n\n"
+	printf "ดูสเปก: https://www.conventionalcommits.org/th/v1.0.0/\n\n"
+	exit 1
+fi
