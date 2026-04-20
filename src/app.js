@@ -5,6 +5,7 @@ const morgan = require('morgan');
 
 const config = require('./config/config');
 const routes = require('./routes/index');
+const msRoutes = require('./routes/auth-ms-route')
 
 const app = express();
 
@@ -18,5 +19,6 @@ if (config.env !== 'test') {
 }
 
 app.use(routes);
+app.use('/api/auth', msRoutes)
 
 module.exports = app;

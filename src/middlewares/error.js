@@ -12,9 +12,14 @@ const errorHandler = (err, req, res, next) => {
 	const message = err.message || 'Internal server error';
 
 	res.status(statusCode).json({
-		code: statusCode,
-		message,
-	});
+        success: false,
+        message: err.message || "Internal Server Error",
+        data: null,
+        statusCode: statusCode,
+        error: {
+            details: err.details || "Something went wrong on the server"
+        }
+    });
 };
 
 module.exports = {

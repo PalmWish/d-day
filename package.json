@@ -5,7 +5,7 @@
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "NODE_ENV=dev nodemon src/server.js",
+    "dev": "cross-env NODE_ENV=dev nodemon src/server.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
@@ -25,10 +25,13 @@
   "homepage": "https://github.com/D-Day-2026/d-day-api#readme",
   "dependencies": {
     "@prisma/client": "^7.7.0",
+    "axios": "^1.15.1",
     "cors": "^2.8.6",
+    "cross-env": "^10.1.0",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.3",
     "morgan": "^1.10.1"
   },
   "devDependencies": {
