@@ -1,11 +1,19 @@
-const httpStatus = require('http-status');
+const { successResponse } = require('../utils/response');
+const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode');
 
 const healthCheck = (req, res) => {
-  res.status(httpStatus.OK).json({
-    status: 'ok',
-    message: 'Service is healthy',
-    timestamp: new Date().toISOString(),
-  });
+  res
+    .status(HTTP_STATUS_CODE.OK)
+    .json(
+      successResponse({
+        message: 'Service is healthy',
+        data: {
+          status: 'ok',
+          timestamp: new Date().toISOString(),
+        },
+        statusCode: HTTP_STATUS_CODE.OK,
+      })
+    );
 };
 
 module.exports = {
