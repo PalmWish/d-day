@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/D-Day-2026/d-day-api#readme",
   "dependencies": {
+    "@prisma/client": "^7.7.0",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
@@ -40,6 +41,7 @@
     "eslint-plugin-prettier": "^5.5.5",
     "husky": "^9.1.7",
     "nodemon": "^3.1.14",
-    "prettier": "^3.8.3"
+    "prettier": "^3.8.3",
+    "prisma": "^7.7.0"
   }
 }

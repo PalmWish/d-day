@@ -7,6 +7,8 @@ const config = require('./config/config');
 const v1Routes = require('./routes/v1');
 const { notFound, errorHandler } = require('./middlewares/error');
 
+const boothRoutes = require('./routes/Booths/AppBooths');
+
 const app = express();
 
 app.use(helmet());
@@ -26,6 +28,8 @@ app.get('/', (req, res) => {
 });
 
 app.use(config.apiPrefix, v1Routes);
+
+app.use('/booths', boothRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
