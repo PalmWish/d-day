@@ -1,15 +1,15 @@
-const httpStatus = require('http-status');
+const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode');
 
 const notFound = (req, res) => {
-	res.status(httpStatus.NOT_FOUND).json({
-		code: httpStatus.NOT_FOUND,
+	res.status(HTTP_STATUS_CODE.NOT_FOUND).json({
+		code: HTTP_STATUS_CODE.NOT_FOUND,
 		message: 'Not found',
 	});
 };
 
 const errorHandler = (err, req, res, next) => {
-	const statusCode = err.statusCode || httpStatus.INTERNAL_SERVER_ERROR;
-	const message = err.message || httpStatus[statusCode];
+	const statusCode = err.statusCode || HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR;
+	const message = err.message || 'Internal server error';
 
 	res.status(statusCode).json({
 		code: statusCode,

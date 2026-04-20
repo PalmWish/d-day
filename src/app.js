@@ -4,8 +4,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 
 const config = require('./config/config');
-const v1Routes = require('./routes/v1');
-const { notFound, errorHandler } = require('./middlewares/error');
+const routes = require('./routes/index');
 
 const boothRoutes = require('./routes/Booths/AppBooths');
 
@@ -33,5 +32,6 @@ app.use('/booths', boothRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
+app.use(routes);
 
 module.exports = app;
