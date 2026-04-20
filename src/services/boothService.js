@@ -8,5 +8,15 @@ const getBoothsWithStampStatus = async (userId) => {
     isStamped: stamps.length > 0
   }));
 };
+const getBoothDetail = async (boothId, userId) => {
+  const booth = await boothRepository.findOneWithUserStamp(boothId, userId);
 
-module.exports = { getBoothsWithStampStatus };
+  if (!booth) return null;
+
+  const { stamps, ...boothData } = booth;
+  return {
+    ...boothData,
+    isStamped: stamps.length > 0
+  };
+};
+module.exports = { getBoothsWithStampStatus, getBoothDetail };

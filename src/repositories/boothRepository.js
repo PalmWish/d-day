@@ -10,5 +10,15 @@ const findAllWithUserStamps = async (userId) => {
     }
   });
 };
+const findOneWithUserStamp = async (boothId, userId) => {
+  return await prisma.booth.findUnique({
+    where: { id: boothId },
+    include: {
+      stamps: {
+        where: { userId: userId }
+      }
+    }
+  });
+};
 
-module.exports = { findAllWithUserStamps };
+module.exports = { findAllWithUserStamps, findOneWithUserStamp };
