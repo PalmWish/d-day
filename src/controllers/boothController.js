@@ -1,16 +1,30 @@
+const { successResponse } = require('../utils/response');
 const boothService = require('../services/boothService');
+const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode');
 
 const getAllBooths = async (req, res) => {
   try {
     const userId = req.user.id;
     const result = await boothService.getBoothsWithStampStatus(userId);
     
-    return res.status(200).json(result);
+    return res.status(HTTP_STATUS_CODE.OK).json(successResponse({
+        message: "Successfully fetched all booths",
+        data: result,
+        statusCode: HTTP_STATUS_CODE.OK
+      }));
   } catch (error) {
     console.error("error:", error);
-    return res.status(500).json({ message: "INTERNAL_SERVER_ERROR" });
+    return res.status(HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR)
+    .json(errorResponse({
+  message:"INTERNAL_SERVER_ERROR",
+  details = null,
+  statusCode = HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR,
+  data = null,
+}));
   }
 };
+
+//----------------GetByID---------------------------------
 const getBoothById = async (req, res) => {
   try {
     const { id } = req.params;
@@ -18,19 +32,38 @@ const getBoothById = async (req, res) => {
 
     const boothId = parseInt(id);
     if (isNaN(boothId)) {
-      return res.status(400).json({ message: "INVALID_BOOTH_ID" });
+      return res.status(HTTP_STATUS_CODE.BAD_REQUEST).json(errorResponse({
+  message:"BAD_REQUEST",
+  details = null,
+  statusCode = HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR,
+  data = null,
+}));
     }
 
     const result = await boothService.getBoothDetail(boothId, userId);
 
     if (!result) {
-      return res.status(404).json({ message: "BOOTH_NOT_FOUND" });
+      return res.status(HTTP_STATUS_CODE.NOT_FOUND).json(errorResponse({
+  message:"NOT_FOUND",
+  details = null,
+  statusCode = HTTP_STATUS_CODE.NOT_FOUND,
+  data = null,
+}));
     }
-    return res.status(200).json(result);
+    return res.status(HTTP_STATUS_CODE.OK).json(successResponse({
+        message: "Successfully fetched the booth",
+        data: result,
+        statusCode: HTTP_STATUS_CODE.OK
+      }));
 
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: "INTERNAL_SERVER_ERROR" });
+    return res.status(HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR).json(errorResponse({
+  message:"INTERNAL_SERVER_ERROR",
+  details = null,
+  statusCode = HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR,
+  data = null,
+}));
   }
 };
 
