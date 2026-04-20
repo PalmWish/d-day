@@ -2,10 +2,12 @@ const express = require('express');
 const healthRoute = require('./health.route');
 const { errorResponse } = require('../utils/response');
 const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode');
-
+const boothRoutes = require('./Booths/AppBooths');
 const router = express.Router();
 
 router.use('/', healthRoute);
+
+router.use('/booths', boothRoutes);
 
 router.use((req, res) => {
 	res.status(HTTP_STATUS_CODE.NOT_FOUND).json(
