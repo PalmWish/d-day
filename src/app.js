@@ -4,9 +4,8 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 
 const config = require('./config/config');
-const v1Routes = require('./routes/v1');
+const routes = require('./routes/index');
 const adminRoute = require('./routes/v1/admin.route');
-const { notFound, errorHandler } = require('./middlewares/error');
 
 const app = express();
 
@@ -19,17 +18,7 @@ if (config.env !== 'test') {
   app.use(morgan('dev'));
 }
 
-app.get('/', (req, res) => {
-  res.json({
-    message: `Welcome to ${config.appName}`,
-    env: config.env,
-  });
-});
-
-app.use(config.apiPrefix, v1Routes);
+app.use(routes);
 app.use('/admin', adminRoute);
-
-app.use(notFound);
-app.use(errorHandler);
 
 module.exports = app;
