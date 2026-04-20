@@ -5,6 +5,7 @@ const morgan = require('morgan');
 
 const config = require('./config/config');
 const v1Routes = require('./routes/v1');
+const adminRoute = require('./routes/v1/admin.route');
 const { notFound, errorHandler } = require('./middlewares/error');
 
 const app = express();
@@ -26,6 +27,7 @@ app.get('/', (req, res) => {
 });
 
 app.use(config.apiPrefix, v1Routes);
+app.use('/admin', adminRoute);
 
 app.use(notFound);
 app.use(errorHandler);
