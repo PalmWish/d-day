@@ -10,7 +10,8 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "prepare": "husky",
-    "test": "echo \"No tests configured yet\" && exit 0"
+    "test": "echo \"No tests configured yet\" && exit 0",
+    "seed:booths": "node prisma/seed.js"
   },
   "repository": {
     "type": "git",
@@ -41,5 +42,8 @@
     "nodemon": "^3.1.14",
     "prettier": "^3.8.3",
     "prisma": "^7.7.0"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
   }
 }

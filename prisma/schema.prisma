@@ -43,6 +43,8 @@ model Booth {
   description String
   location    String
   created_at  DateTime @default(now())
+  code        String   @unique
+  qrCodeURL   String
 
   stampedBy Stamp[]
   votes     Vote[]
