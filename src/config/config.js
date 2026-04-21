@@ -27,6 +27,11 @@ const config = {
     authEndpoint: process.env.MICROSOFT_AUTH_ENDPOINT,
     tokenEndpoint: process.env.MICROSOFT_TOKEN_ENDPOINT,
   },
+
+  DEV: 'dev',
+  PRODUCTION: 'prod',
+
+  whiteList: process.env.ADMIN_EMAILS ? process.env.ADMIN_EMAILS.split(',') : []
 };
 
 module.exports = config;

@@ -1,6 +1,8 @@
 const microsoftRepo = require("../repositories/auth-ms-repository.js");
 const jwt = require("jsonwebtoken");
 const config = require('../config/config.js');
+const msgConstants = require("../constants/message.constant.js")
+const roleConstants = require("../constants/role.constant.js")
 
 const microsoftLogin = async (authMSCode) => {
     let msToken, profile;
@@ -8,7 +10,7 @@ const microsoftLogin = async (authMSCode) => {
     try {
         msToken = await microsoftRepo.getAccessTokenFromCode(authMSCode);
     } catch (error) {
-        const err = new Error("INVALID_AUTH_CODE");
+        const err = new Error(msgConstants.MESSAGE.INVALID_AUTH_CODE);
         err.statusCode = 401;
         throw err;
     }
@@ -16,13 +18,13 @@ const microsoftLogin = async (authMSCode) => {
     try {
         profile = await microsoftRepo.getMicrosoftProfile(msToken);
     } catch (error) {
-        const err = new Error("OAUTH_PROVIDER_ERROR");
+        const err = new Error(msgConstants.MESSAGE.OAUTH_ERROR);
         err.statusCode = 502;
         throw err;
     }
     
     if (!profile.mail.endsWith('@kmutt.ac.th')) {
-        const err = new Error("UNSUPPORTED_EMAIL_DOMAIN");
+        const err = new Error(msgConstants.MESSAGE.UNSUPPORTED_EMAIL);
         err.statusCode = 403;
         throw err;
     }
@@ -30,23 +32,23 @@ const microsoftLogin = async (authMSCode) => {
     const studentId = profile.onPremisesSamAccountName;
     // console.log(`SID: ${studentId}`);
     if (!studentId) {
-        const err = new Error("STUDENT_ID_NOT_FOUND");
+        const err = new Error(msgConstants.MESSAGE.STUDENT_NOT_FOUND);
         err.statusCode = 400;
         throw err;
     }
 
     const yearPrefix = studentId.substring(0, 2);
     
-    let role = 'GUEST';
+    let role = roleConstants.ROLE.GUEST;
     if (yearPrefix === '67' || yearPrefix === '68') {
-        role = 'SIT_STUDENT';
+        role = roleConstants.ROLE.SIT_STUDENT;
     } else if (yearPrefix === '65' || yearPrefix === '66') {
-        role = 'STUDENT';
+        role = roleConstants.ROLE.STUDENT;
     }
 
-    const adminList = config.adminEmails || []; 
+    const adminList = config.whiteList || []; 
     if (adminList.includes(profile.mail)) {
-        role = 'ADMIN';
+        role = roleConstants.ROLE.ADMIN;
     }
 
     // ผม test เฉยๆคับอันนี้
@@ -73,7 +75,7 @@ const microsoftLogin = async (authMSCode) => {
         email: profile.mail,
         studentId: studentId,
         name: profile.displayName,
-        role: user.role
+        role: role
     };
 
     const accessToken = jwt.sign(payload, config.jwtSecret, { expiresIn: '1d' });
