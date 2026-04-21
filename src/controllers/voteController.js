@@ -81,5 +81,33 @@ const handleVote = async (req, res, next) => {
 }));
   }
 };
+const getMyVote = async (req, res, next) => {
+  try {
+    if (!req.user || !req.user.id) {
+      return res.status(HTTP_STATUS_CODE.UNAUTHORIZED).json(errorResponse({
+  message:'Invalid or missing token',
+  details = null,
+  statusCode = HTTP_STATUS_CODE.UNAUTHORIZED,
+  data = null,
+}));
+    }
+    const userId = req.user.id;
+    const voteData = await voteService.getMyVote(userId);
 
-module.exports = { handleVote };
+    return res.status(HTTP_STATUS_CODE.OK).json(successResponse({
+        message: "Successfully gets the vote",
+        data: voteData,
+        statusCode: HTTP_STATUS_CODE.OK
+      }));
+    
+  } catch (error) {
+    return res.status(HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR).json(errorResponse({
+  message:"INTERNAL_SERVER_ERROR",
+  details = null,
+  statusCode = HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR,
+  data = null,
+}));
+  }
+};
+
+module.exports = { handleVote, getMyVote };

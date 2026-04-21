@@ -26,11 +26,23 @@ const upsertVote = async (userId, boothId) => {
   return { vote, isNewRecord: !existingVote };
 };
 
+const findVoteByUserId = (userId) => {
+  return prisma.vote.findUnique({
+    where: { user_id: userId },
+    select: {
+      id: true,
+      booth_id: true,
+      voted_at: true
+    }
+  });
+};
+
 module.exports = {
   findBoothById,
   getPeriodConfig,
   countUserStamps,
   getRoleThreshold,
   checkUserStampOnBooth,
-  upsertVote
+  upsertVote,
+  findVoteByUserId
 };

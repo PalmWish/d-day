@@ -34,4 +34,16 @@ const processVote = async (userId, userRole, boothId) => {
   };
 };
 
-module.exports = { processVote };
+const getMyVote = async (userId) => {
+  const vote = await voteRepository.findVoteByUserId(userId);
+  
+  if (!vote) return null;
+
+  return {
+    voteId: vote.id,
+    boothId: vote.booth_id,
+    votedAt: vote.voted_at
+  };
+};
+
+module.exports = { processVote, getMyVote };
