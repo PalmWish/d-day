@@ -35,7 +35,7 @@ const getBoothById = async (req, res) => {
       return res.status(HTTP_STATUS_CODE.BAD_REQUEST).json(errorResponse({
   message:"BAD_REQUEST",
   details = null,
-  statusCode = HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR,
+  statusCode = HTTP_STATUS_CODE.BAD_REQUEST,
   data = null,
 }));
     }
