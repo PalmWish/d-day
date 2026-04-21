@@ -16,6 +16,7 @@ enum Role {
   SIT_STUDENT
   STUDENT
   GUEST
+  ADMIN
 }
 
 enum PeriodType {
@@ -25,12 +26,11 @@ enum PeriodType {
 
 model User {
   id             String    @id @default(uuid())
-  email          String    @unique               
+  email          String    @unique         
+  studentId      String?   @map("student_id")      
   name           String                         
-  role           Role                            
-  is_admin       Boolean   @default(false)                                 
-  created_at     DateTime  @default(now())       
-  last_login_at  DateTime? @updatedAt 
+  role           Role                                                      
+  created_at     DateTime  @default(now())
   stamps Stamp[]
   vote   Vote?
 

@@ -12,22 +12,33 @@ const microsoftCallback = async (req, res) => {
         const authCode = req.query.code;
 
         if (!authCode) {
-            return res.status(400).send("No code provided");
+            return res.status(401).json({ 
+                success: false, 
+                message: "INVALID_AUTH_CODE",
+                data: null,
+                statusCode: 401,
+                error: { details: "No authorization code provided from Microsoft" }
+            });
         }
-        console.log("Auth Code Received:", authCode);
+        // console.log("Auth Code Received:", authCode);
 
         const authRes = await authMsService.microsoftLogin(authCode);
-        console.log(authRes);
+        // console.log(authRes);
+        const { accessToken } = authRes;
+
+        res.cookie('token', accessToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'prod',
+            sameSite: 'lax',
+            maxAge: 24 * 60 * 60 * 1000
+        });
         
-        // const frontendUrl = config.frontendUrl || 'http://localhost:5500';
-        // res.redirect(`${frontendUrl}/?token=${authRes.accessToken}`);
-        return res.status(200).json(authRes);
+        res.redirect(`/`);
+        // return res.status(200).json(authRes);
         
     } catch (err) {
         console.error("Callback Error:", err);
-        next(err)
-        // const frontendUrl = config.frontendUrl || 'http://localhost:5500';
-        // res.redirect(`${frontendUrl}/?error=${encodeURIComponent(err.message)}`);
+        res.redirect(`/?error=${encodeURIComponent(err.message)}`);
     }
 }
 

@@ -1,3 +1,6 @@
+const jwt = require('jsonwebtoken');
+const config = require('../config/config.js');
+
 const authMiddleware = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
@@ -9,20 +12,31 @@ const authMiddleware = (req, res, next) => {
 };
 
 const verifyToken = (req, res, next) => {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1]; 
-
-    // console.log(`authHeader: ${authHeader}`);
-    // console.log(`fullHeader:`, req.headers);
-    // console.log(`authToken: ${token}`);
+    const token = req.cookies.token;
     
-    if (!token) return res.status(401).json({ error: "Permission denied." });
+    if (!token) {
+        return res.status(401).json({
+            success: false,
+            message: "UNAUTHORIZED",
+            data: null,
+            statusCode: 401,
+            error: { details: "No authentication token provided in cookies" }
+        });
+    }
 
-    jwt.verify(token, env.JWT_SECRET, (err, decodedUser) => {
-        if (err) return res.status(403).json({ error: "Your session is expired." });
-        
+    jwt.verify(token, env.jwtSecret, (err, decodedUser) => {
+        if (err) {
+            return res.status(401).json({
+                success: false,
+                message: "INVALID_TOKEN",
+                data: null,
+                statusCode: 401,
+                error: { details: "Token is invalid or expired" }
+            });
+        }
+
         req.user = decodedUser; 
-        next(); 
+        next();
     });
 };
 

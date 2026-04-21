@@ -3,9 +3,23 @@ const jwt = require("jsonwebtoken");
 const config = require('../config/config.js');
 
 const microsoftLogin = async (authMSCode) => {
-    const msToken = await microsoftRepo.getAccessTokenFromCode(authMSCode);
-    const profile = await microsoftRepo.getMicrosoftProfile(msToken);
-    // console.log(profile);
+    let msToken, profile;
+
+    try {
+        msToken = await microsoftRepo.getAccessTokenFromCode(authMSCode);
+    } catch (error) {
+        const err = new Error("INVALID_AUTH_CODE");
+        err.statusCode = 401;
+        throw err;
+    }
+
+    try {
+        profile = await microsoftRepo.getMicrosoftProfile(msToken);
+    } catch (error) {
+        const err = new Error("OAUTH_PROVIDER_ERROR");
+        err.statusCode = 502;
+        throw err;
+    }
     
     if (!profile.mail.endsWith('@kmutt.ac.th')) {
         const err = new Error("UNSUPPORTED_EMAIL_DOMAIN");
@@ -16,7 +30,9 @@ const microsoftLogin = async (authMSCode) => {
     const studentId = profile.onPremisesSamAccountName;
     // console.log(`SID: ${studentId}`);
     if (!studentId) {
-        throw new Error("STUDENT_ID_NOT_FOUND");
+        const err = new Error("STUDENT_ID_NOT_FOUND");
+        err.statusCode = 400;
+        throw err;
     }
 
     const yearPrefix = studentId.substring(0, 2);
@@ -28,17 +44,28 @@ const microsoftLogin = async (authMSCode) => {
         role = 'STUDENT';
     }
 
-    // โค้ดส่วน check email whitelist ของ admin (เดี๋ยวมาเพิ่ม)
+    const adminList = config.adminEmails || []; 
+    if (adminList.includes(profile.mail)) {
+        role = 'ADMIN';
+    }
 
     // ผม test เฉยๆคับอันนี้
     let user = { userId: 1, email: profile.mail, studentId: studentId, name: profile.displayName, role: role };
 
     // อันนี้ของจริงแต่เดี๋ยว test อีกทีครับ
     // let user = await userRepository.findByEmail(profile.mail);
-    // if (!user) {
-    //     user = await userRepository.create({ email: profile.mail, studentId: studentId, name: profile.displayName, role: role });
+    
+    // if (user) {
+    //     if (user.role === 'ADMIN') {
+    //         role = 'ADMIN';
+    //     }
     // } else {
-    //     await userRepository.updateLastLogin(user.id);
+    //     user = await userRepository.createUser({
+    //         email: profile.mail,
+    //         studentId: studentId,
+    //         name: profile.displayName,
+    //         role: role
+    //     });
     // }
 
     const payload = {
@@ -49,7 +76,7 @@ const microsoftLogin = async (authMSCode) => {
         role: user.role
     };
 
-    const accessToken = jwt.sign(payload, config.jwtSecret, { expiresIn: '1h' });
+    const accessToken = jwt.sign(payload, config.jwtSecret, { expiresIn: '1d' });
 
     return {
         accessToken,
