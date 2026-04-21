@@ -1,0 +1,17 @@
+[
+  {
+    "name": "SIT Innovation Booth",
+    "description": "Showcasing student projects",
+    "location": "Building A, Floor 1"
+  },
+  {
+    "name": "Tech Recruitment Hub",
+    "description": "Connect with tech companies",
+    "location": "Building B, Floor 2"
+  },
+  {
+    "name": "Gaming Arena",
+    "description": "E-sports and mini-games",
+    "location": "Building C, Floor 1"
+  }
+]
