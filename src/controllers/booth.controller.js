@@ -1,5 +1,5 @@
 const { successResponse } = require('../utils/response');
-const boothService = require('../services/booth.service');
+const boothService = require('../services/boothService');
 const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode');
 
 const getAllBooths = async (req, res) => {
@@ -13,7 +13,6 @@ const getAllBooths = async (req, res) => {
         statusCode: HTTP_STATUS_CODE.OK
       }));
   } catch (error) {
-    console.error("error:", error);
     return res.status(HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR)
     .json(errorResponse({
   message:"INTERNAL_SERVER_ERROR",
