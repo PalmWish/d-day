@@ -1,5 +1,6 @@
 const voteService = require('../services/vote.service');
 const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode');
+const { successResponse, errorResponse } = require('../utils/response');
 
 const handleVote = async (req, res, next) => {
   try {

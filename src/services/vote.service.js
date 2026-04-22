@@ -40,9 +40,11 @@ const getMyVote = async (userId) => {
   if (!vote) return null;
 
   return {
-    voteId: vote.id,
     boothId: vote.booth_id,
-    votedAt: vote.voted_at
+    booth: {
+      name: vote.booth.name
+    },
+    voteAt: vote.voted_at
   };
 };
 

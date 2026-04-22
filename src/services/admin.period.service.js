@@ -16,4 +16,12 @@ const getStampingPeriod = async () => {
   };
 };
 
-module.exports = { getStampingPeriod };
+const updateStampingPeriod = async (startAt, endAt) => {
+  const updated = await adminPeriodRepository.updateStampingPeriod(startAt, endAt);
+  return {
+    startAt: updated.start_at,
+    endAt: updated.end_at
+  };
+};
+
+module.exports = { getStampingPeriod, updateStampingPeriod };

@@ -36,6 +36,20 @@ const findVoteByUserId = (userId) => {
     }
   });
 };
+const findVoteByUserId = (userId) => {
+  return prisma.vote.findUnique({
+    where: { user_id: userId },
+    select: {
+      booth_id: true,
+      booth: {
+        select: {
+          name: true
+        }
+      },
+      voted_at: true
+    }
+  });
+};
 
 module.exports = {
   findBoothById,

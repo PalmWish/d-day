@@ -1,5 +1,6 @@
 const adminBoothService = require('../services/admin.booth.service');
 const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode');
+const { successResponse, errorResponse } = require('../utils/response');
 
 const getBoothsTracking = async (req, res, next) => {
   try {
