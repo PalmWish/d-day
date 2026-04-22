@@ -72,8 +72,30 @@ const getProfile = async (req, res, next) => {
     }
 };
 
+const logout = async (req, res, next) => {
+    try {
+        res.clearCookie('token', {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === config.PRODUCTION,
+            sameSite: 'lax',
+            path: '/'
+        });
+
+        return res.status(HTTP_STATUS_CODE.OK).json(
+            successResponse({
+                message: "Logged out successfully",
+                data: null,
+                statusCode: HTTP_STATUS_CODE.OK
+            })
+        );
+    } catch (err) {
+        next(err);
+    }
+};
+
 module.exports = {
     loginWithMicrosoft,
     microsoftCallback,
     getProfile,
+    logout,
 };
