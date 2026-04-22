@@ -5,12 +5,13 @@
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "NODE_ENV=dev nodemon src/server.js",
+    "dev": "cross-env NODE_ENV=dev nodemon src/server.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "prepare": "husky",
-    "test": "echo \"No tests configured yet\" && exit 0"
+    "test": "echo \"No tests configured yet\" && exit 0",
+    "seed:booths": "node prisma/seed.js"
   },
   "repository": {
     "type": "git",
@@ -24,11 +25,19 @@
   },
   "homepage": "https://github.com/D-Day-2026/d-day-api#readme",
   "dependencies": {
+    "@prisma/adapter-pg": "^7.8.0",
+    "@prisma/client": "^7.7.0",
+    "axios": "^1.15.1",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
+    "cross-env": "^10.1.0",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "helmet": "^8.1.0",
-    "morgan": "^1.10.1"
+    "jsonwebtoken": "^9.0.3",
+    "morgan": "^1.10.1",
+    "pg": "^8.20.0",
+    "xlsx-js-style": "^1.2.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.5.0",
@@ -38,6 +47,10 @@
     "eslint-plugin-prettier": "^5.5.5",
     "husky": "^9.1.7",
     "nodemon": "^3.1.14",
-    "prettier": "^3.8.3"
+    "prettier": "^3.8.3",
+    "prisma": "^7.7.0"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
   }
 }
