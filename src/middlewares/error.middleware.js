@@ -1,6 +1,6 @@
 const constants = require("../constants/message.constant.js")
 
-const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode');
+const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode.js');
 
 const notFound = (req, res) => {
 	res.status(HTTP_STATUS_CODE.NOT_FOUND).json({

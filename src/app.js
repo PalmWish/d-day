@@ -6,7 +6,6 @@ const cookieParser = require('cookie-parser');
 
 const config = require('./config/config');
 const routes = require('./routes/index');
-const msRoutes = require('./routes/auth-ms-route')
 
 const app = express();
 
