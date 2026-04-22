@@ -80,3 +80,11 @@ chore: update dependencies
 ```
 
 If message does not follow convention, commit will be rejected by `.husky/commit-msg` hook.
+
+## 7) Run seed Booths
+
+For inserting the created booths into the database from the config file (JSON/CSV).
+
+```bash
+npm run seed:booths
+```

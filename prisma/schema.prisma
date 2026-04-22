@@ -1,0 +1,104 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  SIT_STUDENT
+  STUDENT
+  GUEST
+  ADMIN
+}
+
+enum PeriodType {
+  STAMPING
+  VOTING
+}
+
+model User {
+  id             String    @id @default(uuid())
+  email          String    @unique         
+  studentId      String?   @map("student_id")      
+  name           String                         
+  role           Role                                                      
+  created_at     DateTime  @default(now())
+  stamps Stamp[]
+  vote   Vote?
+
+  @@map("users")          
+}
+
+model Booth {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  location    String
+  created_at  DateTime @default(now())
+  code        String   @unique
+  qrCodeURL   String
+
+  stampedBy Stamp[]
+  votes     Vote[]
+
+  @@map("booths")
+}
+
+model Stamp {
+  id         String   @id @default(uuid())
+  user_id    String
+  booth_id   String
+  stamped_at DateTime @default(now())
+
+  user  User  @relation(fields: [user_id], references: [id])
+  booth Booth @relation(fields: [booth_id], references: [id])
+
+  @@unique([user_id, booth_id])
+  @@map("stamps")
+}
+
+model Vote {
+  id         String   @id @default(uuid())
+  user_id    String   @unique
+  booth_id   String
+  voted_at   DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  user  User  @relation(fields: [user_id], references: [id])
+  booth Booth @relation(fields: [booth_id], references: [id])
+
+  @@map("votes")
+}
+
+model RoleThreshold {
+  role            Role     @id
+  required_stamps Int
+  updated_at      DateTime @updatedAt
+
+  @@map("role_thresholds")
+}
+
+model AdminWhitelist {
+  id         String   @id @default(uuid())
+  email      String   @unique
+  created_at DateTime @default(now())
+
+  @@map("admin_whitelists")
+}
+
+model PeriodConfig {
+  type       PeriodType @id
+  start_at   DateTime
+  end_at     DateTime
+  updated_at DateTime   @updatedAt
+
+  @@map("period_configs")
+}
