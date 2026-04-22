@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const config = require('../config/config.js');
 const constants = require("../constants/message.constant.js")
-const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode');
+const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode.js');
 
 const authMiddleware = (req, res, next) => {
   const authHeader = req.headers.authorization;
