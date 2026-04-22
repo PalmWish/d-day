@@ -1,4 +1,4 @@
-const voteRepository = require('../repositories/voteRepository');
+const voteRepository = require('../repositories/vote.repository');
 const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode');
 
 const processVote = async (userId, userRole, boothId) => {

@@ -2,15 +2,18 @@ const express = require('express');
 const healthRoute = require('./health.route');
 const { errorResponse } = require('../utils/response');
 const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode');
-const boothRoutes = require('./boothsRoutes');
-const voteRoute = require('./voteRoutes')
+const boothRoute = require('./booth.route');
+const voteRoute = require('./vote.route')
+const adminRoute = require('./admin.route')
 const router = express.Router();
 
 router.use('/', healthRoute);
 
-router.use('/booths', boothRoutes);
+router.use('/booths', boothRoute);
 
 router.use('/votes', voteRoute)
+
+router.use('/admin', adminRoute)
 
 router.use((req, res) => {
 	res.status(HTTP_STATUS_CODE.NOT_FOUND).json(

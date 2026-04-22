@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getAllBooths, getBoothById } = require('../controllers/boothController');
+const { getAllBooths, getBoothById } = require('../controllers/booth.controller');
 const authMiddleware = require("../middlewares/auth");
 
 router.use(authMiddleware)

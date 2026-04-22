@@ -1,5 +1,5 @@
 const { successResponse } = require('../utils/response');
-const boothService = require('../services/boothService');
+const boothService = require('../services/booth.service');
 const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode');
 
 const getAllBooths = async (req, res) => {
