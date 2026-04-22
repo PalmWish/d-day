@@ -2,7 +2,7 @@ const config = require("../config/config.js");
 const authMsService = require("../services/auth-ms.service.js");
 const constants = require("../constants/message.constant.js")
 const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode.js');
-
+const { errorResponse } = require("../utils/response.js")
 const loginWithMicrosoft = (req, res) => {
     const authUrl = `${config.microsoft.authEndpoint}?client_id=${config.microsoft.clientId}&response_type=code&redirect_uri=${config.microsoft.redirectUri}&response_mode=query&scope=User.Read`;
     

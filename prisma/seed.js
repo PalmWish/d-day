@@ -1,12 +1,20 @@
 const { PrismaClient } = require('@prisma/client');
+const { PrismaPg } = require('@prisma/adapter-pg');
 const fs = require('fs');
 const path = require('path');
+require('dotenv').config({ path: path.join(process.cwd(), '.env') });
 
-const prisma = new PrismaClient();
+if (!process.env.DATABASE_URL) {
+  console.error('[ERROR] DATABASE_URL is missing. Please set it in .env');
+  process.exit(1);
+}
+
+const adapter = new PrismaPg(process.env.DATABASE_URL);
+const prisma = new PrismaClient({ adapter });
 
 async function main() {
   const fileName = process.argv[2] || 'booths.json';
-  const filePath = path.join(__dirname, '../data', fileName);
+  const filePath = path.join(process.cwd(), 'data', fileName);
   const fileExtension = path.extname(fileName).toLowerCase();
 
   if (!fs.existsSync(filePath)) {
@@ -31,7 +39,7 @@ async function main() {
       for (let i = 1; i < lines.length; i++) {
         const values = lines[i].split(',').map(v => v.trim());
         
-        if (!values[0] || !values[1]) {
+        if (!values[0]) {
           console.error(`[VALIDATION ERROR] Line ${i + 1}: Data format incorrect (Missing columns).`);
           process.exit(1);
         }
@@ -39,7 +47,6 @@ async function main() {
         booths.push({
           name: values[0],        
           code: values[0],        
-          qrCodeUrl: values[1],   
           description: "Booth from CSV", 
           location: "See map"
         });
@@ -59,22 +66,25 @@ async function main() {
   for (let i = 0; i < booths.length; i++) {
     const booth = booths[i];
     const lineNumber = i + 1;
+    const boothCode = (booth.code || booth.name || '').trim();
 
-    if (!booth.name || !booth.location) {
+    if (!booth.name || !booth.location || !boothCode) {
       console.error(`[VALIDATION ERROR] Line ${lineNumber}: 
-        Missing required fields (name or location).`);
+        Missing required fields (name, location, or code).`);
       process.exit(1); 
     }
 
     try {
-      const result = await prisma.booth.upsert({
-        where: { name: booth.name },
+      await prisma.booth.upsert({
+        where: { code: boothCode },
         update: {
+          name: booth.name,
           description: booth.description,
           location: booth.location,
         },
         create: {
           name: booth.name,
+          code: boothCode,
           description: booth.description,
           location: booth.location,
         },
