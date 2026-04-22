@@ -6,7 +6,6 @@ const cookieParser = require('cookie-parser');
 
 const config = require('./config/config');
 const routes = require('./routes/index');
-const adminRoute = require('./routes/admin.route');
 
 const app = express();
 

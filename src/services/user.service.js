@@ -1,7 +1,11 @@
 const userRepository = require('../repositories/user.repository.js');
 
-const getUserProfile = async (userId) => {
-    const user = await userRepository.findById(userId);
+const getUserProfile = async (email) => {
+    if (!email) {
+        return null;
+    }
+
+    const user = await userRepository.findByEmail(email);
 
     if (!user) { return null; }
 

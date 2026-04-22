@@ -1,23 +1,36 @@
 const prisma = require('../config/prisma');
 
 const findAllWithUserStamps = async (userId) => {
-  return await prisma.booth.findMany({
+  console.info('[booth.repository] findAllWithUserStamps query', { userId });
+  const result = await prisma.booth.findMany({
     include: {
-      stamps: {
-        where: { userId }
+      stampedBy: {
+        where: { user_id: userId }
       }
     }
   });
+  console.info('[booth.repository] findAllWithUserStamps result', {
+    userId,
+    count: result.length,
+  });
+  return result;
 };
 const findOneWithUserStamp = async (boothId, userId) => {
-  return await prisma.booth.findUnique({
+  console.info('[booth.repository] findOneWithUserStamp query', { boothId, userId });
+  const result = await prisma.booth.findUnique({
     where: { id: boothId },
     include: {
-      stamps: {
-        where: { userId: userId }
+      stampedBy: {
+        where: { user_id: userId }
       }
     }
   });
+  console.info('[booth.repository] findOneWithUserStamp result', {
+    boothId,
+    userId,
+    found: Boolean(result),
+  });
+  return result;
 };
 
 module.exports = { findAllWithUserStamps, findOneWithUserStamp };
