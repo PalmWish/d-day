@@ -4,7 +4,7 @@ const { verifyToken } = require('../middlewares/auth.middleware.js');
 
 const router = express.Router();
 
-router.post('/microsoft', authMsController.loginWithMicrosoft);
+router.get('/microsoft', authMsController.loginWithMicrosoft);
 router.get('/microsoft/callback', authMsController.microsoftCallback);
 
 router.get('/profile', verifyToken, authMsController.getProfile);
