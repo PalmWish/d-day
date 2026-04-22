@@ -9,4 +9,6 @@ router.get('/microsoft/callback', authMsController.microsoftCallback);
 
 router.get('/profile', verifyToken, authMsController.getProfile);
 
+router.post('/logout', verifyToken, authMsController.logout);
+
 module.exports = router;
