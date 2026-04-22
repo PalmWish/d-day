@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const authMiddleware = require('../middlewares/auth');
-const isAdmin = require('../middlewares/isAdmin');
+const isAdmin = require('../middlewares/is.admin');
 const adminBoothsRoutes = require('./admin.booth.route')
 const adminPeriodRoutes = require('./admin.period.routes')
 const adminAuth = [authMiddleware, isAdmin];
