@@ -19,6 +19,8 @@ router.use('/admin', adminRoutes)
 
 router.use('/api/auth', msRoutes)
 
+router.use('/auth', msRoutes)
+
 router.use('/stamps', stampRoute)
 
 router.use((req, res) => {

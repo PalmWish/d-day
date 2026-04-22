@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 
 const config = require('./config/config');
 const routes = require('./routes/index');
+const adminRoute = require('./routes/admin.route');
 
 const app = express();
 
@@ -19,6 +20,6 @@ if (config.env !== 'test') {
   app.use(morgan('dev'));
 }
 
-app.use(routes);
+app.use('/api', routes);
 
 module.exports = app;

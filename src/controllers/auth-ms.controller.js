@@ -2,6 +2,7 @@ const config = require("../config/config.js");
 const authMsService = require("../services/auth-ms.service.js");
 const msgConstants = require("../constants/message.constant.js")
 const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode.js');
+const { errorResponse } = require("../utils/response.js")
 const userService = require('../services/user.service.js');
 
 const loginWithMicrosoft = (req, res) => {
@@ -72,8 +73,30 @@ const getProfile = async (req, res, next) => {
     }
 };
 
+const logout = async (req, res, next) => {
+    try {
+        res.clearCookie('token', {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === config.PRODUCTION,
+            sameSite: 'lax',
+            path: '/'
+        });
+
+        return res.status(HTTP_STATUS_CODE.OK).json(
+            successResponse({
+                message: "Logged out successfully",
+                data: null,
+                statusCode: HTTP_STATUS_CODE.OK
+            })
+        );
+    } catch (err) {
+        next(err);
+    }
+};
+
 module.exports = {
     loginWithMicrosoft,
     microsoftCallback,
     getProfile,
+    logout,
 };

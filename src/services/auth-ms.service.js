@@ -12,7 +12,7 @@ const microsoftLogin = async (authMSCode) => {
 
     try {
         msToken = await microsoftRepo.getAccessTokenFromCode(authMSCode);
-    } catch (error) {
+    } catch {
         const err = new Error(msgConstants.ERROR_MESSAGE.INVALID_AUTH_CODE);
         err.statusCode = HTTP_STATUS_CODE.UNAUTHORIZED;
         throw err;
@@ -20,7 +20,7 @@ const microsoftLogin = async (authMSCode) => {
 
     try {
         profile = await microsoftRepo.getMicrosoftProfile(msToken);
-    } catch (error) {
+    } catch {
         const err = new Error(msgConstants.ERROR_MESSAGE.OAUTH_ERROR);
         err.statusCode = HTTP_STATUS_CODE.BAD_GATEWAY;
         throw err;
