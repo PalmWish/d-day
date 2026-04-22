@@ -4,7 +4,7 @@ const config = require('../config/config.js');
 const msgConstants = require("../constants/message.constant.js")
 const roleConstants = require("../constants/role.constant.js")
 const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode.js');
-const { YEARS } = require("../constants/years.constant.js")
+const { STUDENT_ID_PREFIX } = require("../constants/years.constant.js")
 const userRepository = require("../repositories/user.repository.js")
 
 const microsoftLogin = async (authMSCode) => {
@@ -43,9 +43,9 @@ const microsoftLogin = async (authMSCode) => {
     const yearPrefix = studentId.substring(0, 2);
     
     let role = roleConstants.ROLE.GUEST;
-    if (yearPrefix === YEARS.FIRST_YEAR || yearPrefix === YEARS.SECOND_YEAR) {
+    if (yearPrefix === STUDENT_ID_PREFIX.FIRST_YEAR || yearPrefix === STUDENT_ID_PREFIX.SECOND_YEAR) {
         role = roleConstants.ROLE.SIT_STUDENT;
-    } else if (yearPrefix === YEARS.THIRD_YEAR || yearPrefix === YEARS.FOURTH_YEAR) {
+    } else if (yearPrefix === STUDENT_ID_PREFIX.THIRD_YEAR || yearPrefix === STUDENT_ID_PREFIX.FOURTH_YEAR) {
         role = roleConstants.ROLE.STUDENT;
     }
 

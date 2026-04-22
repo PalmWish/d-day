@@ -10,5 +10,5 @@ const ERROR_MESSAGE = {
 };
 
 module.exports = {
-  ERROR_MESSAGE: ERROR_MESSAGE,
+  ERROR_MESSAGE,
 };
