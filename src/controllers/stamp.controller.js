@@ -1,9 +1,8 @@
 const stampService = require('../services/stamp.service.js');
-const { successResponse, errorResponse } = require('../utils/response.js');
+const { successResponse } = require('../utils/response.js');
 const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode.js');
-const { ERROR_MESSAGE } = require('../constants/message.constant.js');
 
-const getStampCount = async (req, res) => {
+const getStampCount = async (req, res, next) => {
     try {
         const { userId, role } = req.user;
 
@@ -19,7 +18,7 @@ const getStampCount = async (req, res) => {
 
     } catch (err) {
         console.error("getStampCount controller:", err);
-        next(err)
+        next(err);
     }
 };
 

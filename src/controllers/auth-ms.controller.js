@@ -2,6 +2,7 @@ const config = require("../config/config.js");
 const authMsService = require("../services/auth-ms.service.js");
 const msgConstants = require("../constants/message.constant.js")
 const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode.js');
+const { errorResponse } = require("../utils/response.js")
 const userService = require('../services/user.service.js');
 
 const loginWithMicrosoft = (req, res) => {

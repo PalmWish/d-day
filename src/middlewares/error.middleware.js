@@ -11,7 +11,6 @@ const notFound = (req, res) => {
 
 const errorHandler = (err, req, res, next) => {
 	const statusCode = err.statusCode || HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR;
-	const message = err.message || constants.ERROR_MESSAGE.INTERNAL_SERVER_ERROR;
 
 	res.status(statusCode).json({
         success: false,
