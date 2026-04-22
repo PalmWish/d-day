@@ -20,7 +20,6 @@ if (config.env !== 'test') {
   app.use(morgan('dev'));
 }
 
-app.use(routes);
-app.use('/admin', adminRoute);
+app.use('/api', routes);
 
 module.exports = app;

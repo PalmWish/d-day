@@ -11,7 +11,7 @@ router.use('/', healthRoute);
 
 router.use('/booths', boothRoutes);
 
-router.use('/api/auth', msRoutes)
+router.use('/auth', msRoutes)
 
 router.use('/stamps', stampRoute)
 
