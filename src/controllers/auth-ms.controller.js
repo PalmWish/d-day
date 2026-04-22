@@ -1,6 +1,7 @@
 const config = require("../config/config.js");
-const authMsService = require("../services/auth-ms-service.js");
+const authMsService = require("../services/auth-ms.service.js");
 const constants = require("../constants/message.constant.js")
+const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode.js');
 
 const loginWithMicrosoft = (req, res) => {
     const authUrl = `${config.microsoft.authEndpoint}?client_id=${config.microsoft.clientId}&response_type=code&redirect_uri=${config.microsoft.redirectUri}&response_mode=query&scope=User.Read`;
@@ -13,11 +14,11 @@ const microsoftCallback = async (req, res) => {
         const authCode = req.query.code;
 
         if (!authCode) {
-            return res.status(401).json(
+            return res.status(HTTP_STATUS_CODE.UNAUTHORIZED).json(
                 errorResponse({
-                    message: constants.MESSAGE.INVALID_AUTH_CODE,
+                    message: constants.ERROR_MESSAGE.INVALID_AUTH_CODE,
                     details: "No authorization code provided from Microsoft",
-                    statusCode: 401,
+                    statusCode: HTTP_STATUS_CODE.UNAUTHORIZED,
                 })
             );
         }
@@ -35,7 +36,6 @@ const microsoftCallback = async (req, res) => {
         });
         
         res.redirect(`${config.frontendUrl}/`);
-        // return res.status(200).json(authRes);
         
     } catch (err) {
         console.error("Callback Error:", err);

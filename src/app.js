@@ -21,6 +21,5 @@ if (config.env !== 'test') {
 }
 
 app.use(routes);
-app.use('/api/auth', msRoutes)
 
 module.exports = app;
