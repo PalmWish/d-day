@@ -4,7 +4,7 @@ const config = require('../config/config.js');
 const msgConstants = require("../constants/message.constant.js")
 const roleConstants = require("../constants/role.constant.js")
 const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode.js');
-const { STUDENT_ID_PREFIX } = require("../constants/years.constant.js")
+const { STUDENT_ID_PREFIX } = require("../constants/prefix.constant.js")
 const userRepository = require("../repositories/user.repository.js")
 
 const microsoftLogin = async (authMSCode) => {
