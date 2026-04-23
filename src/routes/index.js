@@ -6,46 +6,19 @@ const boothRoutes = require('./booth.route');
 const msRoutes = require('./auth-ms.route');
 const stampRoute = require('./stamp.route');
 const voteRoutes = require('./vote.route');
-const adminRoutes = require('./admin.route')
+const adminRoutes = require('./admin.route');
 const router = express.Router();
 
 router.use('/', healthRoute);
 
 router.use('/booths', boothRoutes);
 
-router.use('/votes', voteRoutes)
+router.use('/votes', voteRoutes);
 
-router.use('/admin', adminRoutes)
+router.use('/admin', adminRoutes);
 
-router.use('/api/auth', msRoutes)
+router.use('/auth', msRoutes);
 
-router.use('/auth', msRoutes)
-
-router.use('/stamps', stampRoute)
-
-router.use('/admin', adminRoute)
-
-router.use((req, res) => {
-	res.status(HTTP_STATUS_CODE.NOT_FOUND).json(
-		errorResponse({
-			message: 'Not found',
-			details: `Route ${req.originalUrl} does not exist`,
-			statusCode: HTTP_STATUS_CODE.NOT_FOUND,
-		})
-	);
-});
-
-router.use((err, req, res, next) => {
-	const statusCode = err.statusCode || HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR;
-	const message = err.message || 'Internal server error';
-
-	res.status(statusCode).json(
-		errorResponse({
-			message,
-			details: err.details || err.stack || null,
-			statusCode,
-		})
-	);
-});
+router.use('/stamps', stampRoute);
 
 module.exports = router;

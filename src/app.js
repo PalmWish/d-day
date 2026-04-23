@@ -9,6 +9,8 @@ const routes = require('./routes/index');
 
 const app = express();
 
+const { errorHandler, notFound } = require('./middlewares/error.middleware');
+
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
@@ -20,5 +22,7 @@ if (config.env !== 'test') {
 }
 
 app.use('/api', routes);
+app.use(notFound);
+app.use(errorHandler);
 
 module.exports = app;

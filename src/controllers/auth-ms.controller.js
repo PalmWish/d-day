@@ -18,12 +18,12 @@ const loginWithMicrosoft = (req, res) => {
 const microsoftCallback = async (req, res) => {
   try {
     const authCode = req.query.code;
-    console.info('[auth-ms.controller] microsoftCallback start', {
-      hasAuthCode: Boolean(authCode),
-    });
+    // console.info('[auth-ms.controller] microsoftCallback start', {
+    //   hasAuthCode: Boolean(authCode),
+    // });
 
     if (!authCode) {
-      console.warn('[auth-ms.controller] missing microsoft auth code');
+      // console.warn('[auth-ms.controller] missing microsoft auth code');
       return res.status(HTTP_STATUS_CODE.UNAUTHORIZED).json(
         errorResponse({
           message: msgConstants.ERROR_MESSAGE.INVALID_AUTH_CODE,
@@ -36,10 +36,10 @@ const microsoftCallback = async (req, res) => {
 
     const authRes = await authMsService.microsoftLogin(authCode);
     const { accessToken } = authRes;
-    console.info('[auth-ms.controller] microsoftCallback token issued', {
-      userId: authRes.user?.userId || null,
-      role: authRes.user?.role || null,
-    });
+    // console.info('[auth-ms.controller] microsoftCallback token issued', {
+    //   userId: authRes.user?.userId || null,
+    //   role: authRes.user?.role || null,
+    // });
 
     res.cookie('token', accessToken, {
       httpOnly: true,
@@ -58,10 +58,10 @@ const microsoftCallback = async (req, res) => {
 
     // res.redirect(`${config.frontendUrl}/`);
   } catch (err) {
-    console.error('[auth-ms.controller] microsoftCallback failed', {
-      error: err.message,
-      stack: err.stack,
-    });
+    // console.error('[auth-ms.controller] microsoftCallback failed', {
+    //   error: err.message,
+    //   stack: err.stack,
+    // });
     res.redirect(
       `${config.frontendUrl}/?error=${encodeURIComponent(err.message)}`
     );
@@ -71,12 +71,12 @@ const microsoftCallback = async (req, res) => {
 const getProfile = async (req, res, next) => {
   try {
     const email = req.user?.email;
-    console.info('[auth-ms.controller] getProfile start', { email });
+    // console.info('[auth-ms.controller] getProfile start', { email });
 
     if (!email) {
-      console.warn(
-        '[auth-ms.controller] getProfile missing user id in token payload'
-      );
+      // console.warn(
+      //   '[auth-ms.controller] getProfile missing user id in token payload'
+      // );
       return res.status(HTTP_STATUS_CODE.UNAUTHORIZED).json(
         errorResponse({
           message: msgConstants.ERROR_MESSAGE.INVALID_TOKEN,
@@ -89,7 +89,7 @@ const getProfile = async (req, res, next) => {
     const userProfile = await userService.getUserProfile(email);
 
     if (!userProfile) {
-      console.warn('[auth-ms.controller] getProfile user not found', { email });
+      // console.warn('[auth-ms.controller] getProfile user not found', { email });
       return res.status(HTTP_STATUS_CODE.NOT_FOUND).json(
         errorResponse({
           message: msgConstants.ERROR_MESSAGE.USER_NOT_FOUND,
@@ -99,7 +99,7 @@ const getProfile = async (req, res, next) => {
       );
     }
 
-    console.info('[auth-ms.controller] getProfile success', { email });
+    // console.info('[auth-ms.controller] getProfile success', { email });
 
     return res.status(HTTP_STATUS_CODE.OK).json(
       successResponse({
@@ -109,19 +109,15 @@ const getProfile = async (req, res, next) => {
       })
     );
   } catch (err) {
-    console.error('[auth-ms.controller] getProfile failed', {
-      error: err.message,
-      stack: err.stack,
-    });
     next(err);
   }
 };
 
 const logout = async (req, res, next) => {
   try {
-    console.info('[auth-ms.controller] logout start', {
-      userId: req.user?.userId || req.user?.id || null,
-    });
+    // console.info('[auth-ms.controller] logout start', {
+    //   userId: req.user?.userId || req.user?.id || null,
+    // });
 
     res.clearCookie('token', {
       httpOnly: true,
@@ -130,7 +126,7 @@ const logout = async (req, res, next) => {
       path: '/',
     });
 
-  console.info('[auth-ms.controller] logout success');
+    // console.info('[auth-ms.controller] logout success');
     return res.status(HTTP_STATUS_CODE.OK).json(
       successResponse({
         message: 'Logged out successfully',
@@ -139,10 +135,6 @@ const logout = async (req, res, next) => {
       })
     );
   } catch (err) {
-    console.error('[auth-ms.controller] logout failed', {
-      error: err.message,
-      stack: err.stack,
-    });
     next(err);
   }
 };

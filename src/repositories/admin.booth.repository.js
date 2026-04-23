@@ -1,5 +1,4 @@
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const prisma = require('../config/prisma');
 
 const getBoothsWithStats = () => {
   return prisma.booth.findMany({
@@ -9,10 +8,10 @@ const getBoothsWithStats = () => {
       _count: {
         select: {
           stamps: true,
-          votes: true
-        }
-      }
-    }
+          votes: true,
+        },
+      },
+    },
   });
 };
 
