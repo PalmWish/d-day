@@ -5,9 +5,6 @@ const isAdmin = require('../middlewares/admin.middleware');
 
 const router = express.Router();
 
-router.use(verifyToken);
-router.use(isAdmin);
-
 router.get('/thresholds', adminController.getThresholds);
 
 module.exports = router;
