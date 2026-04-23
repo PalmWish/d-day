@@ -1,6 +1,6 @@
 const { exportJsonToExcelBuffer } = require('../utils/excelExporter');
 const studentService = require('../services/student.service');
-const adminService = require('../services/admin.service.js');
+const adminService = require('../services/admin.threshold.service.js');
 const { successResponse } = require('../utils/response.js');
 const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode.js');
 
@@ -95,5 +95,4 @@ const getThresholds = async (req, res, next) => {
 module.exports = {
   exportStudents,
   exportGuest,
-  getThresholds,
 };
