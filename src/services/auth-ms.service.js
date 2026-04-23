@@ -135,7 +135,7 @@ const microsoftLogin = async (authMSCode) => {
     role,
   };
 
-  const accessToken = jwt.sign(payload, config.jwtSecret, { expiresIn: '1d' });
+  const accessToken = await jwt.sign(payload, config.jwtSecret, { expiresIn: '1d' });
   console.info('[auth-ms.service] jwt generated', {
     userId: user.id,
     role,

@@ -6,21 +6,21 @@ const { successResponse, errorResponse } = require('../utils/response.js');
 const userService = require('../services/user.service.js');
 
 const loginWithMicrosoft = async (req, res) => {
-  // const authUrl = `${config.microsoft.authEndpoint}?client_id=${config.microsoft.clientId}&response_type=code&redirect_uri=${config.microsoft.redirectUri}&response_mode=query&scope=User.Read`;
+  const authUrl = `${config.microsoft.authEndpoint}?client_id=${config.microsoft.clientId}&response_type=code&redirect_uri=${config.microsoft.redirectUri}&response_mode=query&scope=User.Read`;
 
-  // res.redirect(authUrl);
+  res.redirect(authUrl);
 
-  const accessToken = await authMsService.mockLogin();
+  // const accessToken = await authMsService.mockLogin();
 
-  console.log('Mock Access Token:', accessToken); 
+  // console.log('Mock Access Token:', accessToken); 
 
-  res.status(HTTP_STATUS_CODE.OK).json(
-    successResponse({
-      message: '',
-      data: accessToken,
-      statusCode: HTTP_STATUS_CODE.OK,
-    })
-  );
+  // res.status(HTTP_STATUS_CODE.OK).json(
+  //   successResponse({
+  //     message: '',
+  //     data: accessToken,
+  //     statusCode: HTTP_STATUS_CODE.OK,
+  //   })
+  // );
 };
 
 const microsoftCallback = async (req, res) => {
