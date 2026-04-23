@@ -7,6 +7,7 @@ const getBoothTrackingDashboard = async () => {
     .map(booth => ({
       boothId: booth.id,
       name: booth.name,
+      code: booth.code,
       totalStamps: booth._count.stamps,
       totalVotes: booth._count.votes
     }))
