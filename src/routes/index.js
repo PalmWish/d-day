@@ -23,6 +23,8 @@ router.use('/auth', msRoutes)
 
 router.use('/stamps', stampRoute)
 
+router.use('/admin', adminRoute)
+
 router.use((req, res) => {
 	res.status(HTTP_STATUS_CODE.NOT_FOUND).json(
 		errorResponse({

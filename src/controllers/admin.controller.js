@@ -1,5 +1,9 @@
 const { exportJsonToExcelBuffer } = require('../utils/excelExporter');
 const studentService = require('../services/student.service');
+const adminService = require('../services/admin.service.js');
+const { successResponse, errorResponse } = require('../utils/response.js');
+const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode.js');
+const { get } = require('../app.js');
 
 function createTimestampForFilename() {
   return new Date().toISOString().replace(/[:.]/g, '-');
@@ -35,7 +39,7 @@ async function exportStudents(req, res, next) {
     res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
     res.setHeader('Content-Length', buffer.length);
 
-    res.status(200).send(buffer);
+    res.status(HTTP_STATUS_CODE.OK).send(buffer);
   } catch (error) {
     next(error);
   }
@@ -67,13 +71,34 @@ async function exportGuest(req, res, next) {
     res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
     res.setHeader('Content-Length', buffer.length);
 
-    res.status(200).send(buffer);
+    res.status(HTTP_STATUS_CODE.OK).send(buffer);
   } catch (error) {
     next(error);
   }
 }
 
+const getThresholds = async (req, res, next) => {
+    try {
+        const thresholds = await adminService.getStampThresholds();
+
+        console.info('[admin.controller.getThresholds] Success', {
+            adminId: req.user.userId
+        });
+
+        return res.status(HTTP_STATUS_CODE.OK).json(
+            successResponse({
+                message: "Thresholds retrieved successfully",
+                data: thresholds,
+                statusCode: HTTP_STATUS_CODE.OK
+            })
+        );
+    } catch (err) {
+        next(err);
+    }
+};
+
 module.exports = {
   exportStudents,
   exportGuest,
+  getThresholds,
 };
