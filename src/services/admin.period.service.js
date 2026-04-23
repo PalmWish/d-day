@@ -6,21 +6,25 @@ const getStampingPeriod = async () => {
   if (!period) {
     return {
       startAt: null,
-      endAt: null
+      endAt: null,
     };
   }
 
   return {
     startAt: period.start_at,
-    endAt: period.end_at
+    endAt: period.end_at,
   };
 };
 
 const updateStampingPeriod = async (startAt, endAt) => {
-  const updated = await adminPeriodRepository.updateStampingPeriod(startAt, endAt);
+  const updated = await adminPeriodRepository.updateStampingPeriod(
+    startAt,
+    endAt
+  );
+
   return {
     startAt: updated.start_at,
-    endAt: updated.end_at
+    endAt: updated.end_at,
   };
 };
 

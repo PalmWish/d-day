@@ -1,9 +1,8 @@
 const { exportJsonToExcelBuffer } = require('../utils/excelExporter');
 const studentService = require('../services/student.service');
 const adminService = require('../services/admin.service.js');
-const { successResponse, errorResponse } = require('../utils/response.js');
+const { successResponse } = require('../utils/response.js');
 const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode.js');
-const { get } = require('../app.js');
 
 function createTimestampForFilename() {
   return new Date().toISOString().replace(/[:.]/g, '-');
@@ -78,23 +77,19 @@ async function exportGuest(req, res, next) {
 }
 
 const getThresholds = async (req, res, next) => {
-    try {
-        const thresholds = await adminService.getStampThresholds();
+  const thresholds = await adminService.getStampThresholds();
 
-        console.info('[admin.controller.getThresholds] Success', {
-            adminId: req.user.userId
-        });
+  console.info('[admin.controller.getThresholds] Success', {
+    adminId: req.user.userId,
+  });
 
-        return res.status(HTTP_STATUS_CODE.OK).json(
-            successResponse({
-                message: "Thresholds retrieved successfully",
-                data: thresholds,
-                statusCode: HTTP_STATUS_CODE.OK
-            })
-        );
-    } catch (err) {
-        next(err);
-    }
+  return res.status(HTTP_STATUS_CODE.OK).json(
+    successResponse({
+      message: 'Thresholds retrieved successfully',
+      data: thresholds,
+      statusCode: HTTP_STATUS_CODE.OK,
+    })
+  );
 };
 
 module.exports = {

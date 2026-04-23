@@ -1,20 +1,20 @@
 const jwt = require('jsonwebtoken');
 const config = require('../config/config.js');
 const { errorResponse } = require('../utils/response.js');
-const msgConstants = require("../constants/message.constant.js")
+const msgConstants = require('../constants/message.constant.js');
 const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode.js');
 
 const authMiddleware = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
-  console.info('[auth.middleware] bearer auth check', {
-    method: req.method,
-    path: req.originalUrl,
-    hasAuthHeader: Boolean(authHeader),
-  });
+  // console.info('[auth.middleware] bearer auth check', {
+  //   method: req.method,
+  //   path: req.originalUrl,
+  //   hasAuthHeader: Boolean(authHeader),
+  // });
 
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    console.warn('[auth.middleware] missing/invalid bearer header');
+    // console.warn('[auth.middleware] missing/invalid bearer header');
     return res.status(HTTP_STATUS_CODE.UNAUTHORIZED).json(
       errorResponse({
         message: msgConstants.ERROR_MESSAGE.UNAUTHORIZED,
@@ -27,9 +27,9 @@ const authMiddleware = (req, res, next) => {
 
   jwt.verify(token, config.jwtSecret, (err, decodedUser) => {
     if (err) {
-      console.warn('[auth.middleware] bearer token verify failed', {
-        error: err.message,
-      });
+      // console.warn('[auth.middleware] bearer token verify failed', {
+      //   error: err.message,
+      // });
       return res.status(HTTP_STATUS_CODE.UNAUTHORIZED).json(
         errorResponse({
           message: msgConstants.ERROR_MESSAGE.INVALID_TOKEN,
@@ -40,10 +40,10 @@ const authMiddleware = (req, res, next) => {
     }
 
     req.user = decodedUser;
-    console.info('[auth.middleware] bearer token verified', {
-      userId: decodedUser.userId || decodedUser.id || null,
-      role: decodedUser.role || null,
-    });
+    // console.info('[auth.middleware] bearer token verified', {
+    //   userId: decodedUser.userId || decodedUser.id || null,
+    //   role: decodedUser.role || null,
+    // });
     next();
   });
 };
@@ -51,18 +51,18 @@ const authMiddleware = (req, res, next) => {
 const verifyToken = (req, res, next) => {
   const token = req.cookies.token;
 
-  console.info('[auth.middleware] cookie auth check', {
-    method: req.method,
-    path: req.originalUrl,
-    hasCookieToken: Boolean(token),
-  });
+  // console.info('[auth.middleware] cookie auth check', {
+  //   method: req.method,
+  //   path: req.originalUrl,
+  //   hasCookieToken: Boolean(token),
+  // });
 
   if (!token) {
-    console.warn('[auth.middleware] missing cookie token');
+    // console.warn('[auth.middleware] missing cookie token');
     return res.status(HTTP_STATUS_CODE.UNAUTHORIZED).json(
       errorResponse({
         message: msgConstants.ERROR_MESSAGE.UNAUTHORIZED,
-        details: "No authentication token provided in cookies",
+        details: 'No authentication token provided in cookies',
         statusCode: HTTP_STATUS_CODE.UNAUTHORIZED,
       })
     );
@@ -70,48 +70,28 @@ const verifyToken = (req, res, next) => {
 
   jwt.verify(token, config.jwtSecret, (err, decodedUser) => {
     if (err) {
-      console.warn('[auth.middleware] cookie token verify failed', {
-        error: err.message,
-      });
+      // console.warn('[auth.middleware] cookie token verify failed', {
+      //   error: err.message,
+      // });
       return res.status(HTTP_STATUS_CODE.UNAUTHORIZED).json(
         errorResponse({
           message: msgConstants.ERROR_MESSAGE.INVALID_TOKEN,
-          details: "Token is invalid or expired",
+          details: 'Token is invalid or expired',
           statusCode: HTTP_STATUS_CODE.UNAUTHORIZED,
         })
       );
     }
 
     req.user = decodedUser;
-    console.info('[auth.middleware] cookie token verified', {
-      userId: decodedUser.userId || decodedUser.id || null,
-      role: decodedUser.role || null,
-    });
+    // console.info('[auth.middleware] cookie token verified', {
+    //   userId: decodedUser.userId || decodedUser.id || null,
+    //   role: decodedUser.role || null,
+    // });
     next();
   });
-};
-
-const isAdmin = (req, res, next) => {
-    if (!req.user || req.user.role !== 'ADMIN') {
-        console.warn(`[auth.middleware.isAdmin] Access Denied: Not an Admin`, {
-            userId: req.user ? req.user.userId : 'Unknown',
-            role: req.user ? req.user.role : 'None',
-            path: req.originalUrl
-        });
-
-        return res.status(HTTP_STATUS_CODE.FORBIDDEN).json(
-            errorResponse({
-                message: msgConstants.ERROR_MESSAGE.FORBIDDEN,
-                details: "Access denied. Admin role required.",
-                statusCode: HTTP_STATUS_CODE.FORBIDDEN
-            })
-        );
-    }
-    next();
 };
 
 module.exports = {
   authMiddleware,
   verifyToken,
-  isAdmin,
 };
