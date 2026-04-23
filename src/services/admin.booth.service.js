@@ -7,7 +7,7 @@ const getBoothTrackingDashboard = async () => {
     .map(booth => ({
       boothId: booth.id,
       name: booth.name,
-      totalStamps: booth._count.stamps,
+      totalStamps: booth._count.stampedBy,
       totalVotes: booth._count.votes
     }))
     .sort((a, b) => b.totalStamps - a.totalStamps);
