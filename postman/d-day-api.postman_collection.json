@@ -335,6 +335,48 @@
           }
         },
         {
+          "name": "Get Voting Period",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "token={{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}{{apiPrefix}}/admin/periods/voting",
+              "host": ["{{baseUrl}}"],
+              "path": ["{{apiPrefix}}", "admin", "periods", "voting"]
+            }
+          }
+        },
+        {
+          "name": "Update Voting Period",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Cookie",
+                "value": "token={{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startAt\": \"{{startAt}}\",\n  \"endAt\": \"{{endAt}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}{{apiPrefix}}/admin/periods/voting",
+              "host": ["{{baseUrl}}"],
+              "path": ["{{apiPrefix}}", "admin", "periods", "voting"]
+            }
+          }
+        },
+        {
           "name": "Export Students",
           "request": {
             "method": "GET",

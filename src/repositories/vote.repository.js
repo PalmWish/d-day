@@ -6,14 +6,14 @@ const getPeriodConfig = (type) =>
   prisma.periodConfig.findUnique({ where: { type } });
 
 const countUserStamps = (userId) =>
-  prisma.stamp.count({ where: { userId: userId } });
+  prisma.stamp.count({ where: { user_id: userId } });
 
 const getRoleThreshold = (role) =>
   prisma.roleThreshold.findUnique({ where: { role } });
 
 const checkUserStampOnBooth = (userId, boothId) =>
   prisma.stamp.findUnique({
-    where: { user_id_booth_id: { userId: userId, boothId: boothId } },
+    where: { user_id_booth_id: { user_id: userId, booth_id: boothId } },
   });
 
 const upsertVote = async (userId, boothId) => {

@@ -5,6 +5,7 @@ const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode.js');
 const getStampCount = async (req, res, next) => {
   try {
     const { userId, role } = req.user;
+    console.log('User Info:', { userId, role });
 
     const stampData = await stampService.getStampCount(userId, role);
 

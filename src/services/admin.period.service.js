@@ -28,4 +28,37 @@ const updateStampingPeriod = async (startAt, endAt) => {
   };
 };
 
-module.exports = { getStampingPeriod, updateStampingPeriod };
+const getVotingPeriod = async () => {
+  const period = await adminPeriodRepository.getVotingPeriod();
+
+  if (!period) {
+    return {
+      startAt: null,
+      endAt: null,
+    };
+  }
+
+  return {
+    startAt: period.start_at,
+    endAt: period.end_at,
+  };
+};
+
+const updateVotingPeriod = async (startAt, endAt) => {
+  const updated = await adminPeriodRepository.updateVotingPeriod(
+    startAt,
+    endAt
+  );
+
+  return {
+    startAt: updated.start_at,
+    endAt: updated.end_at,
+  };
+};
+
+module.exports = {
+  getStampingPeriod,
+  updateStampingPeriod,
+  getVotingPeriod,
+  updateVotingPeriod,
+};
