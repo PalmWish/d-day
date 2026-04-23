@@ -5,6 +5,13 @@ const { authMiddleware } = require('../../middlewares/auth.middleware');
 const { verifyToken } = require('../middlewares/auth.middleware.js');
 
 router.use(verifyToken);
+router.use((req, res, next) => {
+	console.info('[booths.route] incoming request', {
+		method: req.method,
+		path: req.originalUrl,
+	});
+	next();
+});
 
 router.get('/', getAllBooths);
 router.get('/:id', getBoothById);

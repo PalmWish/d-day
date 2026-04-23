@@ -5,5 +5,6 @@ const { verifyToken } = require('../middlewares/auth.middleware.js');
 const router = express.Router();
 
 router.get('/count', verifyToken, stampController.getStampCount);
+router.post('/', verifyToken, stampController.createStamp)
 
 module.exports = router;

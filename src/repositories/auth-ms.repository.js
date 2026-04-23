@@ -3,6 +3,11 @@ const { URLSearchParams } = require('url');
 const config = require('../config/config.js');
 
 const getAccessTokenFromCode = async (authMSCode) => {
+    console.info('[auth-ms.repository] requesting access token', {
+        tokenEndpoint: config.microsoft.tokenEndpoint,
+        hasCode: Boolean(authMSCode),
+    });
+
     const response = await axios.post(config.microsoft.tokenEndpoint,
         new URLSearchParams({
             client_id: config.microsoft.clientId,
@@ -17,10 +22,16 @@ const getAccessTokenFromCode = async (authMSCode) => {
             }
         }
     );
+
+    console.info('[auth-ms.repository] access token response received');
     return response.data.access_token;
 };
 
 const getMicrosoftProfile = async (accessMSToken) => {
+    console.info('[auth-ms.repository] requesting Microsoft profile', {
+        hasAccessToken: Boolean(accessMSToken),
+    });
+
     const response = await axios.get('https://graph.microsoft.com/v1.0/me', {
         params: {
             '$select': 'displayName,onPremisesSamAccountName,mail'
@@ -29,6 +40,7 @@ const getMicrosoftProfile = async (accessMSToken) => {
             Authorization: `Bearer ${accessMSToken}`
         }
     });
+    console.info('[auth-ms.repository] Microsoft profile response received');
     
     return response.data;
 };
