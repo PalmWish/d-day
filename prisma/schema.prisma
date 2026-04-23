@@ -25,16 +25,17 @@ enum PeriodType {
 }
 
 model User {
-  id         String   @id @default(uuid())
-  email      String   @unique
-  studentId  String?  @map("student_id")
-  name       String
-  role       Role
-  created_at DateTime @default(now())
-  stamps     Stamp[]
-  vote       Vote?
+  id             String    @id @default(uuid())
+  email          String    @unique               
+  name           String                         
+  role           Role                            
+  is_admin       Boolean   @default(false)                                 
+  created_at     DateTime  @default(now())       
+  last_login_at  DateTime? @updatedAt 
+  stamps Stamp[]
+  vote   Vote?
 
-  @@map("users")
+  @@map("users")          
 }
 
 model Booth {
@@ -44,6 +45,7 @@ model Booth {
   location    String
   created_at  DateTime @default(now())
   code        String   @unique
+  qrCodeURL   String
 
   stampedBy Stamp[]
   votes     Vote[]
