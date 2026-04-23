@@ -4,10 +4,28 @@ const { ERROR_MESSAGE } = require('../constants/message.constant');
 const { successResponse, errorResponse } = require('../utils/response');
 
 const ISO_8601_REGEX =
-  /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{3})?(?:Z|[+-]\d{2}:\d{2})$/;
+  /^(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])T([01]\d|2[0-3]):([0-5]\d):([0-5]\d)(?:\.(\d+))?(?:Z|[+-](?:(?:0\d|1[0-3]):[0-5]\d|14:00))$/;
 
 const isValidIsoDateTime = (value) => {
-  if (typeof value !== 'string' || !ISO_8601_REGEX.test(value)) {
+  if (typeof value !== 'string') {
+    return false;
+  }
+
+  const matchedParts = value.match(ISO_8601_REGEX);
+  if (!matchedParts) {
+    return false;
+  }
+
+  const year = Number(matchedParts[1]);
+  const month = Number(matchedParts[2]);
+  const day = Number(matchedParts[3]);
+  const calendarDate = new Date(Date.UTC(year, month - 1, day));
+
+  if (
+    calendarDate.getUTCFullYear() !== year ||
+    calendarDate.getUTCMonth() !== month - 1 ||
+    calendarDate.getUTCDate() !== day
+  ) {
     return false;
   }
 
@@ -77,6 +95,21 @@ const updateStampingPeriod = async (req, res) => {
 
     const { startAt, endAt } = req.body;
 
+    if (
+      startAt === null ||
+      startAt === undefined ||
+      endAt === null ||
+      endAt === undefined
+    ) {
+      return res.status(HTTP_STATUS_CODE.BAD_REQUEST).json(
+        errorResponse({
+          message: ERROR_MESSAGE.VALIDATION_ERROR,
+          details: 'startAt and endAt are required',
+          statusCode: HTTP_STATUS_CODE.BAD_REQUEST,
+        })
+      );
+    }
+
     if (!isValidIsoDateTime(startAt) || !isValidIsoDateTime(endAt)) {
       return res.status(HTTP_STATUS_CODE.BAD_REQUEST).json(
         errorResponse({
@@ -93,7 +126,7 @@ const updateStampingPeriod = async (req, res) => {
     if (startDate >= endDate) {
       return res.status(HTTP_STATUS_CODE.BAD_REQUEST).json(
         errorResponse({
-          message: 'INVALID_PERIOD_RANGE',
+          message: ERROR_MESSAGE.INVALID_PERIOD_RANGE,
           details: 'startAt must be earlier than endAt',
           statusCode: HTTP_STATUS_CODE.BAD_REQUEST,
         })
