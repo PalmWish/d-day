@@ -1,0 +1,374 @@
+{
+  "info": {
+    "_postman_id": "2a7f4f0a-5f71-4a2f-9f84-1d9e5f9b6d29",
+    "name": "d-day-api",
+    "description": "Postman collection for the D-Day API. Default base path follows the current app mounting in src/app.js: /api. If your deployment is behind a proxy that rewrites the prefix, change the apiPrefix variable in the environment.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "apiPrefix",
+      "value": "/api"
+    },
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "msAuthCode",
+      "value": ""
+    },
+    {
+      "key": "boothId",
+      "value": ""
+    },
+    {
+      "key": "startAt",
+      "value": "2026-04-23T08:00:00.000Z"
+    },
+    {
+      "key": "endAt",
+      "value": "2026-04-23T17:00:00.000Z"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}{{apiPrefix}}/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["{{apiPrefix}}", "health"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Microsoft Login Redirect",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}{{apiPrefix}}/auth/microsoft",
+              "host": ["{{baseUrl}}"],
+              "path": ["{{apiPrefix}}", "auth", "microsoft"]
+            }
+          }
+        },
+        {
+          "name": "Microsoft Callback",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}{{apiPrefix}}/auth/microsoft/callback?code={{msAuthCode}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["{{apiPrefix}}", "auth", "microsoft", "callback"],
+              "query": [
+                {
+                  "key": "code",
+                  "value": "{{msAuthCode}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "token={{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}{{apiPrefix}}/auth/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["{{apiPrefix}}", "auth", "profile"]
+            }
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "token={{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}{{apiPrefix}}/auth/logout",
+              "host": ["{{baseUrl}}"],
+              "path": ["{{apiPrefix}}", "auth", "logout"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Booths",
+      "item": [
+        {
+          "name": "Get All Booths",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "token={{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}{{apiPrefix}}/booths",
+              "host": ["{{baseUrl}}"],
+              "path": ["{{apiPrefix}}", "booths"]
+            }
+          }
+        },
+        {
+          "name": "Get Booth By Id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "token={{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}{{apiPrefix}}/booths/{{boothId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["{{apiPrefix}}", "booths", "{{boothId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Votes",
+      "item": [
+        {
+          "name": "Submit Vote",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Cookie",
+                "value": "token={{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"boothId\": \"{{boothId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}{{apiPrefix}}/votes",
+              "host": ["{{baseUrl}}"],
+              "path": ["{{apiPrefix}}", "votes"]
+            }
+          }
+        },
+        {
+          "name": "Get My Vote",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "token={{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}{{apiPrefix}}/votes/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["{{apiPrefix}}", "votes", "me"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Stamps",
+      "item": [
+        {
+          "name": "Get Stamp Count",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "token={{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}{{apiPrefix}}/stamps/count",
+              "host": ["{{baseUrl}}"],
+              "path": ["{{apiPrefix}}", "stamps", "count"]
+            }
+          }
+        },
+        {
+          "name": "Create Stamp",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Cookie",
+                "value": "token={{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"boothId\": \"{{boothId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}{{apiPrefix}}/stamps",
+              "host": ["{{baseUrl}}"],
+              "path": ["{{apiPrefix}}", "stamps"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Get Thresholds",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "token={{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}{{apiPrefix}}/admin/thresholds",
+              "host": ["{{baseUrl}}"],
+              "path": ["{{apiPrefix}}", "admin", "thresholds"]
+            }
+          }
+        },
+        {
+          "name": "Get Booths Tracking",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "token={{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}{{apiPrefix}}/admin/booths/tracking",
+              "host": ["{{baseUrl}}"],
+              "path": ["{{apiPrefix}}", "admin", "booths", "tracking"]
+            }
+          }
+        },
+        {
+          "name": "Get Stamping Period",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "token={{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}{{apiPrefix}}/admin/periods/stamping",
+              "host": ["{{baseUrl}}"],
+              "path": ["{{apiPrefix}}", "admin", "periods", "stamping"]
+            }
+          }
+        },
+        {
+          "name": "Update Stamping Period",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Cookie",
+                "value": "token={{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startAt\": \"{{startAt}}\",\n  \"endAt\": \"{{endAt}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}{{apiPrefix}}/admin/periods/stamping",
+              "host": ["{{baseUrl}}"],
+              "path": ["{{apiPrefix}}", "admin", "periods", "stamping"]
+            }
+          }
+        },
+        {
+          "name": "Export Students",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "token={{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}{{apiPrefix}}/admin/export/students",
+              "host": ["{{baseUrl}}"],
+              "path": ["{{apiPrefix}}", "admin", "export", "students"]
+            }
+          }
+        },
+        {
+          "name": "Export Guests",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "token={{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}{{apiPrefix}}/admin/export/guests",
+              "host": ["{{baseUrl}}"],
+              "path": ["{{apiPrefix}}", "admin", "export", "guests"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
