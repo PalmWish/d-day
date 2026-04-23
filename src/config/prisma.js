@@ -9,9 +9,10 @@ if (!databaseUrl) {
   );
 }
 
-const adapter = new PrismaPg({
-  connectionString: databaseUrl,
-});
+const adapter = new PrismaPg(
+  { connectionString: databaseUrl },
+  { schema: 'mydb' }
+);
 
 const prisma = new PrismaClient({ adapter });
 

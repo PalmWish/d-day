@@ -1,5 +1,3 @@
-const { PrismaClient } = require('@prisma/client');
-const { PrismaPg } = require('@prisma/adapter-pg');
 const fs = require('fs');
 const path = require('path');
 require('dotenv').config({ path: path.join(process.cwd(), '.env') });
@@ -9,8 +7,8 @@ if (!process.env.DATABASE_URL) {
   process.exit(1);
 }
 
-const adapter = new PrismaPg(process.env.DATABASE_URL);
-const prisma = new PrismaClient({ adapter });
+const prisma = require('../src/config/prisma.js');
+
 
 async function main() {
   const fileName = process.argv[2] || 'booths.json';
@@ -145,12 +143,13 @@ main()
   for (const booth of booths) {
     try {
       await prisma.booth.upsert({
-        where: { name: booth.name },
-        update: { qr_code: booth.qrcode },
+        where: { code: booth.name },
+        update: { name: booth.name },
         create: {
           name: booth.name,
-          qr_code: booth.qrcode,
-          description: `Booth ${booth.name}`
+          code: booth.name,
+          description: `Booth ${booth.name}`,
+          location: "See map"
         }
       });
       console.log(`[SUCCESS] Seeded booth: ${booth.name}`);
