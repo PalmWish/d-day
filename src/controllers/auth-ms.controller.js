@@ -5,14 +5,22 @@ const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode.js');
 const { successResponse, errorResponse } = require('../utils/response.js');
 const userService = require('../services/user.service.js');
 
-const loginWithMicrosoft = (req, res) => {
+const loginWithMicrosoft = async (req, res) => {
   const authUrl = `${config.microsoft.authEndpoint}?client_id=${config.microsoft.clientId}&response_type=code&redirect_uri=${config.microsoft.redirectUri}&response_mode=query&scope=User.Read`;
 
-  console.info('[auth-ms.controller] loginWithMicrosoft redirect', {
-    path: req.originalUrl,
-  });
-
   res.redirect(authUrl);
+
+  // const accessToken = await authMsService.mockLogin();
+
+  // console.log('Mock Access Token:', accessToken); 
+
+  // res.status(HTTP_STATUS_CODE.OK).json(
+  //   successResponse({
+  //     message: '',
+  //     data: accessToken,
+  //     statusCode: HTTP_STATUS_CODE.OK,
+  //   })
+  // );
 };
 
 const microsoftCallback = async (req, res) => {
@@ -71,7 +79,7 @@ const microsoftCallback = async (req, res) => {
 const getProfile = async (req, res, next) => {
   try {
     const email = req.user?.email;
-    // console.info('[auth-ms.controller] getProfile start', { email });
+    // console.info('[auth-ms.controller] getProfile start', { userId });
 
     if (!email) {
       // console.warn(
@@ -86,7 +94,7 @@ const getProfile = async (req, res, next) => {
       );
     }
 
-    const userProfile = await userService.getUserProfile(email);
+    const userProfile = await userService.getUserProfileByEmail(email);
 
     if (!userProfile) {
       // console.warn('[auth-ms.controller] getProfile user not found', { email });
@@ -98,7 +106,7 @@ const getProfile = async (req, res, next) => {
         })
       );
     }
-
+    // console.info('[auth-ms.controller] getProfile success', { userId });
     // console.info('[auth-ms.controller] getProfile success', { email });
 
     return res.status(HTTP_STATUS_CODE.OK).json(

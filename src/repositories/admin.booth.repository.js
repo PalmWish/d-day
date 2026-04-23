@@ -8,7 +8,7 @@ const getBoothsWithStats = () => {
       code: true,
       _count: {
         select: {
-          stamps: true,
+          stampedBy: true,
           votes: true,
         },
       },

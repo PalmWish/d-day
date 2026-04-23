@@ -1,6 +1,6 @@
 const userRepository = require('../repositories/user.repository.js');
 
-const getUserProfile = async (email) => {
+const getUserProfileByEmail = async (email) => {
     if (!email) {
         return null;
     }
@@ -18,5 +18,5 @@ const getUserProfile = async (email) => {
 };
 
 module.exports = {
-    getUserProfile
+    getUserProfileByEmail
 };

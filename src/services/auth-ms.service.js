@@ -135,7 +135,7 @@ const microsoftLogin = async (authMSCode) => {
     role,
   };
 
-  const accessToken = jwt.sign(payload, config.jwtSecret, { expiresIn: '1d' });
+  const accessToken = await jwt.sign(payload, config.jwtSecret, { expiresIn: '1d' });
   console.info('[auth-ms.service] jwt generated', {
     userId: user.id,
     role,
@@ -153,6 +153,39 @@ const microsoftLogin = async (authMSCode) => {
   };
 };
 
+const mockLogin = async () => {
+  const mockUser = {
+    email: 'test@example.com',
+    studentId: '66130500038',
+    name: 'Test User',
+    role: roleConstants.ROLE.STUDENT,
+  };
+
+  let user = await userRepository.findByEmail(mockUser.email);
+
+  if (!user) {
+    user = await userRepository.createUser({
+      email: mockUser.email,
+      studentId: mockUser.studentId,
+      name: mockUser.name,
+      role: mockUser.role,
+    });
+  }
+
+  const payload = {
+    userId: user.id,
+    email: mockUser.email,
+    studentId: mockUser.studentId,
+    name: mockUser.name,
+    role: mockUser.role,
+  };
+
+  const accessToken = await jwt.sign(payload, config.jwtSecret, { expiresIn: '1d' });
+
+  return accessToken;
+};
+
 module.exports = {
   microsoftLogin,
+  mockLogin,
 };

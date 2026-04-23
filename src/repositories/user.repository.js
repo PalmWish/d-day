@@ -1,7 +1,7 @@
 const prisma = require('../config/prisma');
 
 const findById = async (userId) => {
-    return await prisma.user.findUnique({ where: { userId: userId } });
+    return await prisma.user.findUnique({ where: { id: userId } });
 };
 
 const findByEmail = async (email) => {

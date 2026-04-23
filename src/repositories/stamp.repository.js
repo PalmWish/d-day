@@ -3,7 +3,7 @@ const prisma = require('../config/prisma');
 const countStampsByUserId = async (userId) => {
   return await prisma.stamp.count({
     where: {
-      userId: userId,
+      user_id: userId,
     },
   });
 };
@@ -11,8 +11,8 @@ const countStampsByUserId = async (userId) => {
 const findByUserAndBooth = async (userId, boothId) => {
   return await prisma.stamp.findFirst({
     where: {
-      userId: userId,
-      boothId: boothId,
+      user_id: userId,
+      booth_id: boothId,
     },
   });
 };
@@ -20,9 +20,9 @@ const findByUserAndBooth = async (userId, boothId) => {
 const createStamp = async (userId, boothId) => {
   return await prisma.stamp.create({
     data: {
-      userId: userId,
-      boothId: boothId,
-      stampedAt: new Date(),
+      user_id: userId,
+      booth_id: boothId,
+      stamped_at: new Date(),
     },
   });
 };

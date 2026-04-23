@@ -10,6 +10,7 @@ const notFound = (req, res) => {
 };
 
 const errorHandler = (err, req, res, next) => {
+    console.error('Error:', err);
 	const statusCode = err.statusCode || HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR;
 
 	res.status(statusCode).json({

@@ -29,6 +29,7 @@ const createStamp = async (userId, boothId) => {
 
   const period = await stampRepo.getPeriodConfig('STAMPING');
   const now = new Date();
+
   if (!period || now < period.start_at || now > period.end_at) {
     throw {
       statusCode: HTTP_STATUS_CODE.FORBIDDEN,
@@ -53,9 +54,9 @@ const createStamp = async (userId, boothId) => {
   }
 
   const newStamp = await stampRepo.createStamp(userId, boothId);
-
+ 
   const totalStamps = await stampRepo.countStampsByUserId(userId);
-
+  
   return {
     stampId: newStamp.id,
     boothId: newStamp.boothId,
