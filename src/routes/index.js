@@ -2,15 +2,22 @@ const express = require('express');
 const healthRoute = require('./health.route');
 const { errorResponse } = require('../utils/response');
 const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode');
-const boothRoutes = require('./Booths/AppBooths');
-const msRoutes = require('./auth-ms.route')
+const boothRoutes = require('./booth.route');
+const msRoutes = require('./auth-ms.route');
 const stampRoute = require('./stamp.route');
-const adminRoute = require('./admin.route');
+const voteRoutes = require('./vote.route');
+const adminRoutes = require('./admin.route')
 const router = express.Router();
 
 router.use('/', healthRoute);
 
 router.use('/booths', boothRoutes);
+
+router.use('/votes', voteRoutes)
+
+router.use('/admin', adminRoutes)
+
+router.use('/api/auth', msRoutes)
 
 router.use('/auth', msRoutes)
 

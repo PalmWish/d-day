@@ -104,11 +104,67 @@ async function main() {
   console.log(`Total processed: ${insertedCount}`);
   console.log(`Total skipped: ${skippedCount}`);
   console.log(`-----------------------\n`);
+
+
+
 }
 
 main()
   .catch((e) => {
     console.error(`[FATAL ERROR] ${e.message}`);
+    process.exit(1);
+  })
+
+  //------------------seedBooths-------------------------------------
+  async function seedBooths() {
+  const booths = [
+    { name: "A01", qrcode: "e98ed" }, { name: "A02", qrcode: "b2328" },
+    { name: "A03", qrcode: "6d914" }, { name: "A04", qrcode: "e394e" },
+    { name: "A05", qrcode: "f6a9a" }, { name: "A06", qrcode: "6d737" },
+    { name: "A07", qrcode: "489cb" }, { name: "A08", qrcode: "e05cb" },
+    { name: "A09", qrcode: "45351" }, { name: "A10", qrcode: "ad060" },
+    { name: "A11", qrcode: "37b5b" }, { name: "A12", qrcode: "91bec" },
+    { name: "B01", qrcode: "83aa0" }, { name: "B02", qrcode: "744d1" },
+    { name: "B03", qrcode: "3f572" }, { name: "B04", qrcode: "2d12e" },
+    { name: "B05", qrcode: "ec2cb" }, { name: "B06", qrcode: "d2406" },
+    { name: "B07", qrcode: "db625" }, { name: "B08", qrcode: "5bfe0" },
+    { name: "B09", qrcode: "b7721" }, { name: "C01", qrcode: "132bf" },
+    { name: "C02", qrcode: "371e0" }, { name: "C03", qrcode: "0dfab" },
+    { name: "C04", qrcode: "34a44" }, { name: "C05", qrcode: "12754" },
+    { name: "D01", qrcode: "779c5" }, { name: "D02", qrcode: "f29bc" },
+    { name: "D03", qrcode: "51b1b" }, { name: "D04", qrcode: "f727a" },
+    { name: "E01", qrcode: "e7e7d" }, { name: "E02", qrcode: "d1347" },
+    { name: "E03", qrcode: "1454e" }, { name: "E04", qrcode: "bf3d2" },
+    { name: "E05", qrcode: "26e2b" }, { name: "E06", qrcode: "51afa" },
+    { name: "E07", qrcode: "99e39" }, { name: "E08", qrcode: "d6f62" },
+    { name: "E09", qrcode: "5f6a4" }
+  ];
+
+  console.log('--- Start Seeding Booths ---');
+
+  for (const booth of booths) {
+    try {
+      await prisma.booth.upsert({
+        where: { name: booth.name },
+        update: { qr_code: booth.qrcode },
+        create: {
+          name: booth.name,
+          qr_code: booth.qrcode,
+          description: `Booth ${booth.name}`
+        }
+      });
+      console.log(`[SUCCESS] Seeded booth: ${booth.name}`);
+    } catch (error) {
+      console.error(`[ERROR] Failed to seed booth ${booth.name}:`, error.message);
+    }
+  }
+
+  console.log('--- Seeding Booths Finished ---');
+}
+
+seedBooths()
+  .catch((e) => {
+    console.error('[FATAL] Seed process failed:', e);
     process.exit(1);
   })
   .finally(async () => {

@@ -43,10 +43,22 @@ const getBoothById = async (req, res) => {
     const { id } = req.params;
     const userId = req.user.userId || req.user.id;
 
+<<<<<<< HEAD:src/controllers/booth.controller.js
+    const boothId = parseInt(id);
+    if (isNaN(boothId)) {
+      return res.status(HTTP_STATUS_CODE.BAD_REQUEST).json(errorResponse({
+  message:"BAD_REQUEST",
+  details = null,
+  statusCode = HTTP_STATUS_CODE.BAD_REQUEST,
+  data = null,
+}));
+    }
+=======
     console.info('[booth.controller] getBoothById start', {
       boothId: id,
       userId,
     });
+>>>>>>> dev:src/controllers/boothController.js
 
     const result = await boothService.getBoothDetail(id, userId);
 

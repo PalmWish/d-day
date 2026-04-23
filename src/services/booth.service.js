@@ -1,4 +1,4 @@
-const boothRepository = require('../repositories/boothRepository');
+const boothRepository = require('../repositories/booth.repository');
 
 const getBoothsWithStampStatus = async (userId) => {
   console.info('[booth.service] getBoothsWithStampStatus start', { userId });
