@@ -26,10 +26,20 @@ async function getStudentsForExport() {
         },
       },
     },
-    orderBy: {
-      created_at: 'asc',
-    },
+    orderBy: [
+      {
+        created_at: 'asc',
+      },
+      {
+        stamps: {
+          _count: 'desc',
+        },
+      },
+    ],
   });
+
+  console.log(users);
+  
 
   return mapUsersForExport(users);
 }
@@ -46,9 +56,16 @@ async function getGuestsForExport() {
         },
       },
     },
-    orderBy: {
-      created_at: 'asc',
-    },
+    orderBy: [
+      {
+        created_at: 'asc',
+      },
+      {
+        stamps: {
+          _count: 'desc',
+        },
+      },
+    ],
   });
 
   return mapUsersForExport(users);

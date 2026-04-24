@@ -1,67 +1,66 @@
-const { exportJsonToExcelBuffer } = require('../utils/excelExporter');
-const studentService = require('../services/student.service');
+const { exportJsonToExcelMultiSheetBuffer } = require('../utils/excelExporter');
+const userService = require('../services/user.export.service');
 const adminService = require('../services/admin.threshold.service.js');
 const { successResponse } = require('../utils/response.js');
 const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode.js');
 
 function createTimestampForFilename() {
-  return new Date().toISOString().replace(/[:.]/g, '-');
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+
+  return `${year}${month}${day}`;
 }
 
 const STUDENT_EXPORT_HEADERS = ['StudentId', 'Email', 'Name', 'Stamp'];
 const GUEST_EXPORT_HEADERS = ['Email', 'Name', 'Stamp'];
 
-async function exportStudents(req, res, next) {
+async function exportUserData(req, res, next) {
   try {
-    const students = await studentService.getStudentsForExport();
-    const exportRows = students.map((student) => ({
+    const [students, guests] = await Promise.all([
+      userService.getStudentsForExport(),
+      userService.getGuestsForExport(),
+    ]);
+
+    const studentRows = students.map((student) => ({
       StudentId: student.studentId || '',
       Email: student.email,
       Name: student.name,
       Stamp: student.stamp,
     }));
-    const timestamp = createTimestampForFilename();
-    const filename = `students_${timestamp}.xlsx`;
 
-    const { buffer } = exportJsonToExcelBuffer(exportRows, {
-      sheetName: 'Students',
-      headers: STUDENT_EXPORT_HEADERS,
-      headerFillColor: '2F75B5',
-      summaryFillColor: 'E2F0D9',
-      summaryField: 'Stamp',
-    });
-
-    res.setHeader(
-      'Content-Type',
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-    );
-    res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
-    res.setHeader('Content-Length', buffer.length);
-
-    res.status(HTTP_STATUS_CODE.OK).send(buffer);
-  } catch (error) {
-    next(error);
-  }
-}
-
-async function exportGuest(req, res, next) {
-  try {
-    const guests = await studentService.getGuestsForExport();
-    const exportRows = guests.map((guest) => ({
+    const guestRows = guests.map((guest) => ({
       Email: guest.email,
       Name: guest.name,
       Stamp: guest.stamp,
     }));
-    const timestamp = createTimestampForFilename();
-    const filename = `guests_${timestamp}.xlsx`;
 
-    const { buffer } = exportJsonToExcelBuffer(exportRows, {
-      sheetName: 'Guests',
-      headers: GUEST_EXPORT_HEADERS,
-      headerFillColor: '7A3E00',
-      summaryFillColor: 'FCE4D6',
-      summaryField: 'Stamp',
-    });
+    const timestamp = createTimestampForFilename();
+    const filename = `students_and_guests_${timestamp}.xlsx`;
+
+    const { buffer } = exportJsonToExcelMultiSheetBuffer([
+      {
+        data: studentRows,
+        options: {
+          sheetName: 'Students',
+          headers: STUDENT_EXPORT_HEADERS,
+          headerFillColor: '2F75B5',
+          summaryFillColor: 'E2F0D9',
+          summaryField: 'Stamp',
+        },
+      },
+      {
+        data: guestRows,
+        options: {
+          sheetName: 'Guests',
+          headers: GUEST_EXPORT_HEADERS,
+          headerFillColor: '7A3E00',
+          summaryFillColor: 'FCE4D6',
+          summaryField: 'Stamp',
+        },
+      },
+    ]);
 
     res.setHeader(
       'Content-Type',
@@ -93,6 +92,6 @@ const getThresholds = async (req, res, next) => {
 };
 
 module.exports = {
-  exportStudents,
-  exportGuest,
+  exportUserData,
+  getThresholds,
 };
