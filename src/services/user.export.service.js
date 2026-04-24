@@ -1,5 +1,4 @@
-const prisma = require('../config/prisma');
-const { ROLE } = require('../constants/role.constant');
+const userExportRepository = require('../repositories/user.export.repository');
 
 function mapUsersForExport(users) {
   return users.map((user) => ({
@@ -13,60 +12,13 @@ function mapUsersForExport(users) {
 }
 
 async function getStudentsForExport() {
-  const users = await prisma.user.findMany({
-    where: {
-      role: {
-        in: [ROLE.SIT_STUDENT, ROLE.STUDENT],
-      },
-    },
-    include: {
-      _count: {
-        select: {
-          stamps: true,
-        },
-      },
-    },
-    orderBy: [
-      {
-        created_at: 'asc',
-      },
-      {
-        stamps: {
-          _count: 'desc',
-        },
-      },
-    ],
-  });
-
-  console.log(users);
-  
+  const users = await userExportRepository.findStudentsForExport();
 
   return mapUsersForExport(users);
 }
 
 async function getGuestsForExport() {
-  const users = await prisma.user.findMany({
-    where: {
-      role: ROLE.GUEST,
-    },
-    include: {
-      _count: {
-        select: {
-          stamps: true,
-        },
-      },
-    },
-    orderBy: [
-      {
-        created_at: 'asc',
-      },
-      {
-        stamps: {
-          _count: 'desc',
-        },
-      },
-    ],
-  });
+  const users = await userExportRepository.findGuestsForExport();
 
   return mapUsersForExport(users);
 }
