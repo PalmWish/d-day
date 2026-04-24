@@ -38,6 +38,7 @@ const config = {
       process.env.EVENTPOP_TOKEN_ENDPOINT,
     profileEndpoint:
       process.env.EVENTPOP_PROFILE_ENDPOINT,
+    organizerEndpoint:process.env.EVENTPOP_ORGANIZER_ENDPOINT
   },
 
   DEV: 'dev',

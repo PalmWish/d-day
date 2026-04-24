@@ -32,37 +32,6 @@ const isValidIsoDateTime = (value) => {
   return !Number.isNaN(new Date(value).getTime());
 };
 
-const getStampingPeriod = async (req, res) => {
-  try {
-    if (!req.user) {
-      return res.status(HTTP_STATUS_CODE.UNAUTHORIZED).json(
-        errorResponse({
-          message: ERROR_MESSAGE.UNAUTHORIZED,
-          details: 'Token is missing or invalid',
-          statusCode: HTTP_STATUS_CODE.UNAUTHORIZED,
-        })
-      );
-    }
-
-    if (req.user.role !== 'ADMIN') {
-      return res.status(HTTP_STATUS_CODE.FORBIDDEN).json(
-        errorResponse({
-          message: ERROR_MESSAGE.FORBIDDEN,
-          details: 'You do not have permission to access',
-          statusCode: HTTP_STATUS_CODE.FORBIDDEN,
-        })
-      );
-    }
-} catch {
-    return res.status(HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR).json(
-      errorResponse({
-        message: ERROR_MESSAGE.INTERNAL_SERVER_ERROR,
-        statusCode: HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR,
-      })
-    );
-  }
-}; 
-
 const getStampingPeriod = async (req, res, next) => {
   try {
     const data = await adminPeriodService.getStampingPeriod();

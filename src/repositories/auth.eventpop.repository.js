@@ -32,7 +32,18 @@ const getEventpopProfile = async (accessToken) => {
   return response.data;
 };
 
+const getOrganizerTickets = async (accessToken) => {
+  const response = await axios.get(config.eventpop.organizerEndpoint, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
+  return response.data;
+};
+
 module.exports = {
   getAccessTokenFromCode,
   getEventpopProfile,
+  getOrganizerTickets,
 };

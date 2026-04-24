@@ -39,6 +39,26 @@ const getEventpopProfile = async (eventpopToken) => {
 	}
 };
 
+const getOrganizerTickets = async (eventpopToken) => {
+	try {
+		return await eventpopRepository.getOrganizerTickets(eventpopToken);
+	} catch {
+		throw createError(
+			msgConstants.ERROR_MESSAGE.OAUTH_ERROR,
+			HTTP_STATUS_CODE.BAD_GATEWAY,
+			'Failed to fetch organizer tickets from Eventpop'
+		);
+	}
+};
+
+const hasRegisteredTicket = (ticketsResponse) => {
+	const tickets = Array.isArray(ticketsResponse?.tickets)
+		? ticketsResponse.tickets
+		: [];
+
+	return tickets.some((ticket) => ticket?.event_id != null);
+};
+
 const extractEmail = (profile) => {
 	return (
 		profile?.email ||
@@ -64,6 +84,16 @@ const extractName = (profile, fallbackEmail) => {
 
 const eventpopLogin = async (authCode) => {
 	const eventpopToken = await getEventpopAccessToken(authCode);
+	const organizerTickets = await getOrganizerTickets(eventpopToken);
+
+	if (!hasRegisteredTicket(organizerTickets)) {
+		throw createError(
+			'You have not registered for IT D-Day 2026 yet.',
+			HTTP_STATUS_CODE.FORBIDDEN,
+			'No valid ticket with event_id was found for this organizer.'
+		);
+	}
+
 	const profile = await getEventpopProfile(eventpopToken);
 
 	const email = extractEmail(profile);

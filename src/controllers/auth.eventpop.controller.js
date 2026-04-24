@@ -40,6 +40,7 @@ const eventpopCallback = async (req, res, next) => {
       sameSite: AUTH_CONSTANTS.COOKIE_SAME_SITE_LAX,
       maxAge: AUTH_CONSTANTS.ONE_DAY_IN_MS,
     });
+    console.log('eventpop login success');
 
     return res.status(HTTP_STATUS_CODE.OK).json(
       successResponse({
@@ -49,6 +50,8 @@ const eventpopCallback = async (req, res, next) => {
       })
     );
   } catch (err) {
+    console.log("has error");
+    
     return next(err);
   }
 };
