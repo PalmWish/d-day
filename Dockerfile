@@ -3,18 +3,17 @@ WORKDIR /app
 
 FROM base AS deps
 COPY package*.json ./
-COPY prisma ./prisma/ 
-
-RUN npm install
+COPY prisma ./prisma/
+RUN npm ci --only=production
 RUN npx prisma generate
 
 FROM base AS runner
-ENV NODE_ENV=prod
+ENV NODE_ENV=production
 
 COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/prisma ./prisma
+COPY package*.json ./
 COPY src ./src
-COPY prisma ./prisma
-
 
 EXPOSE 3000
 CMD ["node", "src/server.js"]
