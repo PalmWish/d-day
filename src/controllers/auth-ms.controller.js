@@ -9,18 +9,6 @@ const loginWithMicrosoft = async (req, res) => {
   const authUrl = `${config.microsoft.authEndpoint}?client_id=${config.microsoft.clientId}&response_type=code&redirect_uri=${config.microsoft.redirectUri}&response_mode=query&scope=User.Read`;
 
   res.redirect(authUrl);
-
-  // const accessToken = await authMsService.mockLogin();
-
-  // console.log('Mock Access Token:', accessToken); 
-
-  // res.status(HTTP_STATUS_CODE.OK).json(
-  //   successResponse({
-  //     message: '',
-  //     data: accessToken,
-  //     statusCode: HTTP_STATUS_CODE.OK,
-  //   })
-  // );
 };
 
 const microsoftCallback = async (req, res) => {
@@ -56,13 +44,7 @@ const microsoftCallback = async (req, res) => {
       maxAge: 24 * 60 * 60 * 1000,
     });
 
-    res.status(HTTP_STATUS_CODE.OK).json(
-      successResponse({
-        message: '',
-        data: accessToken,
-        statusCode: HTTP_STATUS_CODE.OK,
-      })
-    );
+    res.redirect('https://localhost:5173/');
 
     // res.redirect(`${config.frontendUrl}/`);
   } catch (err) {

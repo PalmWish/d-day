@@ -21,27 +21,31 @@ const upsertVote = async (userId, boothId) => {
     where: { user_id: userId },
   });
 
-  const vote = await prisma.vote.upsert({
+  if (!existingVote) {
+    const vote = await prisma.vote.create({
+      data: {
+        user_id: userId,
+        booth_id: boothId,
+      },
+    });
+    return { vote, isNewRecord: true };
+  }
+
+  const vote = await prisma.vote.update({
     where: { user_id: userId },
-    update: { booth_id: boothId },
-    create: { user_id: userId, booth_id: boothId },
+    data: {
+      booth_id: boothId,
+      voted_at: new Date(),
+    },
   });
 
-  return { vote, isNewRecord: !existingVote };
+  return { vote, isNewRecord: false };
 };
 
 const findVoteByUserId = (userId) => {
   return prisma.vote.findUnique({
     where: { user_id: userId },
-    select: {
-      booth_id: true,
-      booth: {
-        select: {
-          name: true,
-        },
-      },
-      voted_at: true,
-    },
+    include: { booth: true },
   });
 };
 
