@@ -11,7 +11,7 @@ if (!databaseUrl) {
 
 const adapter = new PrismaPg(
   { connectionString: databaseUrl },
-  { schema: 'mydb' }
+  { schema: 'public' }
 );
 
 const prisma = new PrismaClient({ adapter });
