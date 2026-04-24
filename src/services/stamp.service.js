@@ -19,8 +19,8 @@ const getStampCount = async (userId, role) => {
   };
 };
 
-const createStamp = async (userId, boothId) => {
-  if (!boothId) {
+const createStamp = async (userId, code) => {
+  if (!code) {
     throw {
       statusCode: HTTP_STATUS_CODE.BAD_REQUEST,
       message: ERROR_MESSAGE.VALIDATION_ERROR,
@@ -37,7 +37,7 @@ const createStamp = async (userId, boothId) => {
     };
   }
 
-  const booth = await boothRepo.findById(boothId);
+  const booth = await boothRepo.findByCode(code);
   if (!booth) {
     throw {
       statusCode: HTTP_STATUS_CODE.NOT_FOUND,
@@ -45,7 +45,7 @@ const createStamp = async (userId, boothId) => {
     };
   }
 
-  const isAlreadyStamped = await stampRepo.findByUserAndBooth(userId, boothId);
+  const isAlreadyStamped = await stampRepo.findByUserAndBoothCode(userId, code);
   if (isAlreadyStamped) {
     throw {
       statusCode: HTTP_STATUS_CODE.CONFLICT,
@@ -53,14 +53,14 @@ const createStamp = async (userId, boothId) => {
     };
   }
 
-  const newStamp = await stampRepo.createStamp(userId, boothId);
+  const newStamp = await stampRepo.createStamp(userId, booth.id);
  
   const totalStamps = await stampRepo.countStampsByUserId(userId);
   
   return {
     stampId: newStamp.id,
-    boothId: newStamp.boothId,
-    stampedAt: newStamp.stampedAt,
+    boothId: booth.name,
+    stampedAt: newStamp.stamped_at,
     totalStamps: totalStamps,
   };
 };

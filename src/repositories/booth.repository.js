@@ -8,6 +8,14 @@ const findById = async (id) => {
   return result;
 };
 
+const findByCode = async (code) => {
+  const result = await prisma.booth.findUnique({
+    where: { code },
+  });
+
+  return result;
+};
+
 const findAllWithUserStamps = async (userId) => {
   console.info('[booth.repository] findAllWithUserStamps query', { userId });
 
@@ -47,4 +55,4 @@ const findOneWithUserStamp = async (boothId, userId) => {
   return result;
 };
 
-module.exports = { findById, findAllWithUserStamps, findOneWithUserStamp };
+module.exports = { findById, findByCode, findAllWithUserStamps, findOneWithUserStamp };

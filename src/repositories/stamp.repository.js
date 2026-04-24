@@ -8,12 +8,14 @@ const countStampsByUserId = async (userId) => {
   });
 };
 
-const findByUserAndBooth = async (userId, boothId) => {
+const findByUserAndBoothCode = async (userId, boothCode) => {
   return await prisma.stamp.findFirst({
     where: {
       user_id: userId,
-      booth_id: boothId,
-    },
+      booth: {
+        code: boothCode
+      }
+    }
   });
 };
 
@@ -35,7 +37,7 @@ const getPeriodConfig = async (type) => {
 
 module.exports = {
   countStampsByUserId,
-  findByUserAndBooth,
+  findByUserAndBoothCode,
   createStamp,
   getPeriodConfig,
 };
