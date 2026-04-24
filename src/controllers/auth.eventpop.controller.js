@@ -34,8 +34,8 @@ const eventpopCallback = async (req, res, next) => {
     }
 
     const authRes = await eventpopService.eventpopLogin(authCode);
-
-    res.cookie(AUTH_CONSTANTS.AUTH_TOKEN_COOKIE_NAME, authRes.accessToken, {
+    const { accessToken } = authRes;
+    res.cookie(AUTH_CONSTANTS.AUTH_TOKEN_COOKIE_NAME, accessToken, {
       httpOnly: true,
       sameSite: AUTH_CONSTANTS.COOKIE_SAME_SITE_LAX,
       maxAge: AUTH_CONSTANTS.ONE_DAY_IN_MS,
@@ -44,7 +44,7 @@ const eventpopCallback = async (req, res, next) => {
     return res.status(HTTP_STATUS_CODE.OK).json(
       successResponse({
         message: '',
-        data: authRes,
+        data: accessToken,
         statusCode: HTTP_STATUS_CODE.OK,
       })
     );
