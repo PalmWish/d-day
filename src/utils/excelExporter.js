@@ -139,7 +139,7 @@ function autoColumnWidth(ws, rows, headers, summaryStartCol, summaryRows) {
   ws['!cols'] = columnWidths;
 }
 
-function buildWorkbook(data, options = {}) {
+function createWorksheetAndMetadata(data, options = {}) {
   if (!Array.isArray(data)) {
     throw new Error('Input data must be an array of JSON objects');
   }
@@ -192,15 +192,25 @@ function buildWorkbook(data, options = {}) {
     state: 'frozen',
   };
 
-  const wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, ws, sheetName);
-
   return {
-    workbook: wb,
+    worksheet: ws,
+    sheetName,
     metadata: {
       totalCount: rows.length,
       averageStamp: summaryRows[1].value,
     },
+  };
+}
+
+function buildWorkbook(data, options = {}) {
+  const { worksheet, sheetName, metadata } = createWorksheetAndMetadata(data, options);
+
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, worksheet, sheetName);
+
+  return {
+    workbook: wb,
+    metadata,
   };
 }
 
@@ -214,9 +224,34 @@ function exportJsonToExcelBuffer(data, options = {}) {
   };
 }
 
+function exportJsonToExcelMultiSheetBuffer(sheets) {
+  if (!Array.isArray(sheets) || sheets.length === 0) {
+    throw new Error('Input sheets must be a non-empty array');
+  }
+
+  const workbook = XLSX.utils.book_new();
+  const metadata = [];
+
+  sheets.forEach((sheet) => {
+    const { data, options = {} } = sheet || {};
+    const { worksheet, sheetName, metadata: sheetMetadata } = createWorksheetAndMetadata(data, options);
+
+    XLSX.utils.book_append_sheet(workbook, worksheet, sheetName);
+    metadata.push({ sheetName, ...sheetMetadata });
+  });
+
+  const buffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'buffer' });
+
+  return {
+    buffer,
+    sheets: metadata,
+  };
+}
+
 module.exports = {
   buildWorkbook,
   exportJsonToExcelBuffer,
+  exportJsonToExcelMultiSheetBuffer,
   applyHeaderStyle,
   autoColumnWidth,
   createSummary,
