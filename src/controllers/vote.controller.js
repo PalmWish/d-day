@@ -19,7 +19,7 @@ const handleVote = async (req, res, next) => {
     const userId = req.user.userId;
     const userRole = req.user.role;
 
-    const result = await voteService.processVote(userId, userRole, boothId);
+  const result = await voteService.processVote(userId, userRole, boothId);
 
     const statusCode = result.isNewRecord
       ? HTTP_STATUS_CODE.CREATED
