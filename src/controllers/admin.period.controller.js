@@ -53,7 +53,15 @@ const getStampingPeriod = async (req, res) => {
         })
       );
     }
-}}
+} catch {
+    return res.status(HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR).json(
+      errorResponse({
+        message: ERROR_MESSAGE.INTERNAL_SERVER_ERROR,
+        statusCode: HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR,
+      })
+    );
+  }
+}; 
 
 const getStampingPeriod = async (req, res, next) => {
   try {
@@ -78,6 +86,24 @@ const getStampingPeriod = async (req, res, next) => {
 
 const updateStampingPeriod = async (req, res, next) => {
   try {
+    if (!req.user) {
+      return res.status(HTTP_STATUS_CODE.UNAUTHORIZED).json(
+        errorResponse({
+          message: ERROR_MESSAGE.UNAUTHORIZED,
+          statusCode: HTTP_STATUS_CODE.UNAUTHORIZED,
+        })
+      );
+    }
+
+    if (req.user.role !== 'ADMIN') {
+      return res.status(HTTP_STATUS_CODE.FORBIDDEN).json(
+        errorResponse({
+          message: ERROR_MESSAGE.FORBIDDEN,
+          statusCode: HTTP_STATUS_CODE.FORBIDDEN,
+        })
+      );
+    }
+
     const { startAt, endAt } = req.body;
 
     if (
