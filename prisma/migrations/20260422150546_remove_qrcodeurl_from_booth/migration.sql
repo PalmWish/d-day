@@ -24,6 +24,7 @@ CREATE TABLE "booths" (
     "location" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "code" TEXT NOT NULL,
+    "qrcode" TEXT NOT NULL
 
     CONSTRAINT "booths_pkey" PRIMARY KEY ("id")
 );

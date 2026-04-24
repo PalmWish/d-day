@@ -11,7 +11,7 @@
     "format": "prettier --write .",
     "prepare": "husky",
     "test": "echo \"No tests configured yet\" && exit 0",
-    "seed:booths": "node prisma/seed.js"
+    "seed:booths": "node prisma/seed.js booths.json"
   },
   "repository": {
     "type": "git",

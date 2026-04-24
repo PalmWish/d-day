@@ -1,17 +1,275 @@
 [
   {
-    "name": "SIT Innovation Booth",
-    "description": "Showcasing student projects",
-    "location": "Building A, Floor 1"
+    "name": "A01",
+    "code": "A01",
+    "qrcode": "e98ed",
+    "description": "ระบบการลงทะเบียนและทำแบบสอบถามในงานแสดงสินค้า",
+    "location": "Zone A"
   },
   {
-    "name": "Tech Recruitment Hub",
-    "description": "Connect with tech companies",
-    "location": "Building B, Floor 2"
+    "name": "A02",
+    "code": "A02",
+    "qrcode": "b2328",
+    "description": "ระบบจัดการพัสดุไปรษณีย์ในหอพัก",
+    "location": "Zone A"
   },
   {
-    "name": "Gaming Arena",
-    "description": "E-sports and mini-games",
-    "location": "Building C, Floor 1"
+    "name": "A03",
+    "code": "A03",
+    "qrcode": "6d914",
+    "description": "ระบบเว็บแอปพลิเคชันเพื่อจับคู่และค้นหาทนายความ",
+    "location": "Zone A"
+  },
+  {
+    "name": "A04",
+    "code": "A04",
+    "qrcode": "e394e",
+    "description": "แพลตฟอร์มออนไลน์เพื่อเชื่อมโยงเจ้าของสัตว์เลี้ยงและผู้ให้บริการฝากเลี้ยง",
+    "location": "Zone A"
+  },
+  {
+    "name": "A05",
+    "code": "A05",
+    "qrcode": "f6a9a",
+    "description": "ระบบสารสนเทศการบริหารจัดการคลังสินค้าและการจัดเก็บสำหรับร้านค้าขายอาหารแห้ง",
+    "location": "Zone A"
+  },
+  {
+    "name": "A06",
+    "code": "A06",
+    "qrcode": "6d737",
+    "description": "ระบบจัดการร้านค้าส่งของชำขนาดกลาง (DIBDEE)",
+    "location": "Zone A"
+  },
+  {
+    "name": "A07",
+    "code": "A07",
+    "qrcode": "489cb",
+    "description": "ระบบจัดการงานสำหรับฟรีแลนซ์",
+    "location": "Zone A"
+  },
+  {
+    "name": "A08",
+    "code": "A08",
+    "qrcode": "e05cb",
+    "description": "แพลตฟอร์มออนไลน์สำหรับการจองคิวและจัดการบริการช่างซ่อม (ช่างชัวร์ ChangSure)",
+    "location": "Zone A"
+  },
+  {
+    "name": "A09",
+    "code": "A09",
+    "qrcode": "45351",
+    "description": "ระบบซื้อขายสินค้าออนไลน์สำหรับนักศึกษา มจธ.",
+    "location": "Zone A"
+  },
+  {
+    "name": "A10",
+    "code": "A10",
+    "qrcode": "ad060",
+    "description": "Craftify เว็บบริการ Minecraft Webstore",
+    "location": "Zone A"
+  },
+  {
+    "name": "A11",
+    "code": "A11",
+    "qrcode": "37b5b",
+    "description": "โครงการพัฒนาแพลตฟอร์มออนไลน์เพื่อการซื้อขายสินค้าดิจิทัลสำหรับนักพัฒนา",
+    "location": "Zone A"
+  },
+  {
+    "name": "A12",
+    "code": "A12",
+    "qrcode": "91bec",
+    "description": "ระบบการจัดทริปและแนะนำการท่องเที่ยวอัจฉริยะ (ยักษ์เที่ยว)",
+    "location": "Zone A"
+  },
+  {
+    "name": "B01",
+    "code": "B01",
+    "qrcode": "83aa0",
+    "description": "ระบบบริหารจัดการงานกิจกรรม SIT",
+    "location": "Zone B"
+  },
+  {
+    "name": "B02",
+    "code": "B02",
+    "qrcode": "744d1",
+    "description": "School Management System (SMS)",
+    "location": "Zone B"
+  },
+  {
+    "name": "B03",
+    "code": "B03",
+    "qrcode": "3f572",
+    "description": "ระบบ Chatbot ตอบคำถามและแนะนำข้อมูลสำหรับสาขาเทคโนโลยีสารสนเทศ (AskIT)",
+    "location": "Zone B"
+  },
+  {
+    "name": "B04",
+    "code": "B04",
+    "qrcode": "2d12e",
+    "description": "โครงการพัฒนาทักษะการคิดเชิงวิพากษ์ผ่านแพลตฟอร์มเกมการเรียนรู้ร่วมกับ AI",
+    "location": "Zone B"
+  },
+  {
+    "name": "B05",
+    "code": "B05",
+    "qrcode": "ec2cb",
+    "description": "แพลตฟอร์มเพื่อการนำเสนอและต่อยอดไอเดียสู่โปรเจคสำหรับนักศึกษา",
+    "location": "Zone B"
+  },
+  {
+    "name": "B06",
+    "code": "B06",
+    "qrcode": "d2406",
+    "description": "ระบบวิเคราะห์และค้นหาสายงานที่เหมาะสมสําหรับนักศึกษาสายเทคโนโลยีสารสนเทศ",
+    "location": "Zone B"
+  },
+  {
+    "name": "B07",
+    "code": "B07",
+    "qrcode": "db625",
+    "description": "ระบบหาที่ฝึกงาน/หางานสำหรับนักศึกษามหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี",
+    "location": "Zone B"
+  },
+  {
+    "name": "B08",
+    "code": "B08",
+    "qrcode": "5bfe0",
+    "description": "ระบบช่วยจำอัจฉริยะเพื่อการเรียนรู้อย่างมีประสิทธิภาพ (Memopus)",
+    "location": "Zone B"
+  },
+  {
+    "name": "B09",
+    "code": "B09",
+    "qrcode": "b7721",
+    "description": "KMUTT Station: ระบบ content on-demand เพื่องานประชาสัมพันธ์มหาวิทยาลัย",
+    "location": "Zone B"
+  },
+  {
+    "name": "C01",
+    "code": "C01",
+    "qrcode": "132bf",
+    "description": "การพัฒนาระบบประเมินและจัดอันดับความมั่นคงปลอดภัยของเว็บไซต์มหาวิทยาลัยในประเทศไทยโดยอ้างอิงการวิเคราะห์ค่าการตั้งค่าที่เปิดเผยต่อสาธารณะ",
+    "location": "Zone C"
+  },
+  {
+    "name": "C02",
+    "code": "C02",
+    "qrcode": "371e0",
+    "description": "ระบบเข้ารหัสข้อความและการวิเคราะห์ความมั่นคงปลอดภัยโดยใช้การสลับคีย์บอร์ดไทย-อังกฤษ",
+    "location": "Zone C"
+  },
+  {
+    "name": "C03",
+    "code": "C03",
+    "qrcode": "0dfab",
+    "description": "การรู้จำอารมณ์ของตัวละคร ผ่านการเล่าเรื่องในบทละครโทรทัศน์ ด้วยปัญญาประดิษฐ์",
+    "location": "Zone C"
+  },
+  {
+    "name": "C04",
+    "code": "C04",
+    "qrcode": "34a44",
+    "description": "การสร้างฟังก์ชั่นจับคู่สีสำหรับผลิตภัณฑ์อาหารจากการพิมพ์อาหาร 3 มิติ",
+    "location": "Zone C"
+  },
+  {
+    "name": "C05",
+    "code": "C05",
+    "qrcode": "12754",
+    "description": "Comparative Study for Course Recommendation System",
+    "location": "Zone C"
+  },
+  {
+    "name": "D01",
+    "code": "D01",
+    "qrcode": "779c5",
+    "description": "เกมเพื่อการเรียนรู้เชิงปฏิสัมพันธ์เพื่อพัฒนาการตัดสินใจในการควบคุมโรคแอนแทรกซ์",
+    "location": "Zone D"
+  },
+  {
+    "name": "D02",
+    "code": "D02",
+    "qrcode": "f29bc",
+    "description": "ระบบการจัดการล้างไตอย่างเป็นระบบ (NephroFlow)",
+    "location": "Zone D"
+  },
+  {
+    "name": "D03",
+    "code": "D03",
+    "qrcode": "51b1b",
+    "description": "ระบบจัดการดูแลผู้สูงอายุและผู้ป่วยร่วมกันบนแพลตฟอร์ม LINE (ห่วงใย)",
+    "location": "Zone D"
+  },
+  {
+    "name": "D04",
+    "code": "D04",
+    "qrcode": "f727a",
+    "description": "ระบบบริหารจัดการการนัดหมายของผู้เข้ารับบริการสำหรับคลินิกทันตกรรม",
+    "location": "Zone D"
+  },
+  {
+    "name": "E01",
+    "code": "E01",
+    "qrcode": "e7e7d",
+    "description": "แอปพลิเคชันติดตามพฤติกรรมการกินของแมวด้วยชามอัจฉริยะ",
+    "location": "Zone E"
+  },
+  {
+    "name": "E02",
+    "code": "E02",
+    "qrcode": "d1347",
+    "description": "ระบบวางแผนการท่องเที่ยวสำหรับการเดินทางภายในประเทศไทย",
+    "location": "Zone E"
+  },
+  {
+    "name": "E03",
+    "code": "E03",
+    "qrcode": "1454e",
+    "description": "แพลตฟอร์มดูแลสุขภาพสัตว์เลี้ยงแบบเฉพาะเจาะจงสำหรับการบันทึกติดตามแจ้งเตือนและวางแผนการดูแลด้วย AI",
+    "location": "Zone E"
+  },
+  {
+    "name": "E04",
+    "code": "E04",
+    "qrcode": "bf3d2",
+    "description": "เว็บแอปพลิเคชันสำหรับบันทึกเรื่องราวและอารมณ์ส่วนตัว",
+    "location": "Zone E"
+  },
+  {
+    "name": "E05",
+    "code": "E05",
+    "qrcode": "26e2b",
+    "description": "แอปพลิเคชันหาคู่ พูดคุยทําความรู้จัก ก่อนการพบปะนอกสถานที่",
+    "location": "Zone E"
+  },
+  {
+    "name": "E06",
+    "code": "E06",
+    "qrcode": "51afa",
+    "description": "Fanato (The Financial Assistance)",
+    "location": "Zone E"
+  },
+  {
+    "name": "E07",
+    "code": "E07",
+    "qrcode": "99e39",
+    "description": "แอปพลิเคชั่นจดบันทึกรายจ่าย (มดจด)",
+    "location": "Zone E"
+  },
+  {
+    "name": "E08",
+    "code": "E08",
+    "qrcode": "d6f62",
+    "description": "Lifestyle, Activity & Community Platform",
+    "location": "Zone E"
+  },
+  {
+    "name": "E09",
+    "code": "E09",
+    "qrcode": "5f6a4",
+    "description": "ระบบช่วยวางแผนการใช้เงิน (financeCare)",
+    "location": "Zone E"
   }
 ]
