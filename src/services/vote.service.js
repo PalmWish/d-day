@@ -8,8 +8,8 @@ const createError = (statusCode, message, details = null) => {
   return error;
 };
 
-const processVote = async (userId, userRole, code) => {
-  const booth = await voteRepository.findBoothByCode(code);
+const processVote = async (userId, userRole, boothId) => {
+  const booth = await voteRepository.findBoothById(boothId);
   if (!booth) throw createError(HTTP_STATUS_CODE.NOT_FOUND, 'BOOTH_NOT_FOUND');
 
   const period = await voteRepository.getPeriodConfig('VOTING');
@@ -29,7 +29,7 @@ const processVote = async (userId, userRole, code) => {
 
   const hasStamped = await voteRepository.checkUserStampOnBooth(
     userId,
-    booth.id
+    boothId
   );
   if (!hasStamped)
     throw createError(
@@ -39,7 +39,7 @@ const processVote = async (userId, userRole, code) => {
 
   const { vote, isNewRecord } = await voteRepository.upsertVote(
     userId,
-    booth.id
+    boothId
   );
 
   return {

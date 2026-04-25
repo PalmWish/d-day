@@ -25,9 +25,9 @@ const createStamp = async (req, res, next) => {
   try {
     const { userId } = req.user;
     
-    const { boothId } = req.body;
+    const { code } = req.body;
 
-    const result = await stampService.createStamp(userId, boothId);
+    const result = await stampService.createStamp(userId, code);
 
     return res.status(HTTP_STATUS_CODE.CREATED).json(
       successResponse({

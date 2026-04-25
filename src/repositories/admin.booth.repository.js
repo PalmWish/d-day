@@ -10,6 +10,9 @@ const getBoothsWithStats = () => {
         },
       },
     },
+    orderBy: {
+      booth_id: 'asc',
+    },
   });
 };
 

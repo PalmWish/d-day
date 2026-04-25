@@ -6,8 +6,8 @@ const { successResponse, errorResponse } = require('../utils/response.js');
 const userService = require('../services/user.service.js');
 
 const loginWithMicrosoft = async (req, res) => {
-  const authUrl = `${config.microsoft.authEndpoint}?client_id=${config.microsoft.clientId}&response_type=code&redirect_uri=${config.microsoft.redirectUri}&response_mode=query&scope=User.Read`;
-  res.redirect(authUrl);
+const authUrl = `${config.microsoft.authEndpoint}?client_id=${config.microsoft.clientId}&response_type=code&redirect_uri=${config.microsoft.redirectUri}&response_mode=query&scope=User.Read&prompt=select_account`;  
+res.redirect(authUrl);
 };
 
 const microsoftCallback = async (req, res) => {

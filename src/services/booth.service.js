@@ -1,13 +1,17 @@
 const boothRepository = require('../repositories/booth.repository');
+const stampRepo = require('../repositories/stamp.repository')
 
 const getBoothsWithStampStatus = async (userId) => {
   console.info('[booth.service] getBoothsWithStampStatus start', { userId });
   const booths = await boothRepository.findAllWithUserStamps(userId);
-  console.info('[booth.service] booths loaded', { count: booths.length, userId });
 
-  return booths.map(({ stampedBy, ...boothData }) => ({
+  console.log(booths);
+  
+  return booths.map(({ stampedBy, ...boothData }) => (console.log(stampedBy),
+  {
     ...boothData,
-    isStamped: stampedBy.length > 0
+    isStamped: stampedBy.length > 0,
+    stampAt: stampedBy[0]?.stamped_at || null
   }));
 };
 const getBoothDetail = async (boothId, userId) => {
@@ -27,7 +31,7 @@ const getBoothDetail = async (boothId, userId) => {
   });
   return {
     ...boothData,
-    isStamped: stampedBy.length > 0
+    isStamped: stampedBy.length > 0,
   };
 };
 module.exports = { getBoothsWithStampStatus, getBoothDetail };

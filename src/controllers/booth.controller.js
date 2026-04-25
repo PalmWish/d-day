@@ -18,7 +18,7 @@ const getAllBooths = async (req, res, next) => {
       successResponse({
         message: 'Successfully fetched all booths',
         data: result,
-        statusCode: HTTP_STATUS_CODE.OK,
+      statusCode: HTTP_STATUS_CODE.OK,
       })
     );
   } catch (error) {
