@@ -4,10 +4,9 @@ const stampRepo = require('../repositories/stamp.repository')
 const getBoothsWithStampStatus = async (userId) => {
   console.info('[booth.service] getBoothsWithStampStatus start', { userId });
   const booths = await boothRepository.findAllWithUserStamps(userId);
-
-  console.log(booths);
   
-  return booths.map(({ stampedBy, ...boothData }) => (console.log(stampedBy),
+  return booths.map(({ stampedBy, ...boothData }) => (
+    // console.log(stampedBy),
   {
     ...boothData,
     isStamped: stampedBy.length > 0,

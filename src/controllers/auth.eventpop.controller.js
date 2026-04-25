@@ -51,8 +51,10 @@ const eventpopCallback = async (req, res, next) => {
     //   })
     // );
   } catch (err) {
-    console.log("has error");
-    
+    // console.log("has error");
+    if(err.statusCode === 403){
+     return res.redirect('/no-ticket')
+    }
     return next(err);
   }
 };
