@@ -13,7 +13,7 @@ ENV NODE_ENV=production
 COPY --from=deps /app/node_modules ./node_modules
 COPY --from=deps /app/prisma ./prisma
 COPY package*.json ./
-COPY src ./src
+COPY . .
 
 EXPOSE 3000
 CMD ["node", "src/server.js"]

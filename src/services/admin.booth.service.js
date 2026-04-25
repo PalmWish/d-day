@@ -5,8 +5,9 @@ const getBoothTrackingDashboard = async () => {
 
   return booths
     .map(booth => ({
-      boothId: booth.id,
-      name: booth.name,
+      code: booth.code,
+      boothId: booth.booth_id,
+      name: booth.project_name,
       totalStamps: booth._count.stampedBy,
       totalVotes: booth._count.votes
     }))

@@ -1,275 +1,508 @@
 [
   {
-    "name": "A01",
-    "code": "A01",
-    "qrcode": "e98ed",
-    "description": "ระบบการลงทะเบียนและทำแบบสอบถามในงานแสดงสินค้า",
-    "location": "Zone A"
+    "booth_id": "A01",
+    "code": "e98ed",
+    "project_name": "ระบบการลงทะเบียนและทำแบบสอบถามในงานแสดงสินค้า",
+    "project_type": "Capstone Project",
+    "advisor": "อ.ชัยธวัช",
+    "category": "Business",
+    "members": [
+      "นายภาคภูมิ  พระเจริญ",
+      "นายชยาศิส  เกษรมาศ",
+      "นายศักย์ศรัณย์  อัครเมธาวงศ์"
+    ]
   },
   {
-    "name": "A02",
-    "code": "A02",
-    "qrcode": "b2328",
-    "description": "ระบบจัดการพัสดุไปรษณีย์ในหอพัก",
-    "location": "Zone A"
+    "booth_id": "A02",
+    "code": "b2328",
+    "project_name": "ระบบจัดการพัสดุไปรษณีย์ในหอพัก",
+    "project_type": "Capstone Project",
+    "advisor": "อ.ชัยธวัช",
+    "category": "Business",
+    "members": [
+      "นายศุภกร  ปรีชานฤตย์",
+      "นายกฤตภาส  จารุบูรณศักดิ์",
+      "นางสาวพิมพ์พจี  เศรษฐีรุ่งภพ"
+    ]
   },
   {
-    "name": "A03",
-    "code": "A03",
-    "qrcode": "6d914",
-    "description": "ระบบเว็บแอปพลิเคชันเพื่อจับคู่และค้นหาทนายความ",
-    "location": "Zone A"
+    "booth_id": "A03",
+    "code": "6d914",
+    "project_name": "ระบบเว็บแอปพลิเคชันเพื่อจับคู่และค้นหาทนายความ",
+    "project_type": "Capstone Project",
+    "advisor": "อ.นันทพงศ์",
+    "category": "Business",
+    "members": [
+      "นายสิรภพ  วุฒิเทียร",
+      "นางสาวณัฐนันท์  จิราจารุวัฒน์",
+      "นางสาวนิศารัตน์  อุ่นเรือนงาม"
+    ]
   },
   {
-    "name": "A04",
-    "code": "A04",
-    "qrcode": "e394e",
-    "description": "แพลตฟอร์มออนไลน์เพื่อเชื่อมโยงเจ้าของสัตว์เลี้ยงและผู้ให้บริการฝากเลี้ยง",
-    "location": "Zone A"
+    "booth_id": "A04",
+    "code": "e394e",
+    "project_name": "แพลตฟอร์มออนไลน์เพื่อเชื่อมโยงเจ้าของสัตว์เลี้ยงและผู้ให้บริการฝากเลี้ยง",
+    "project_type": "Capstone Project",
+    "advisor": "อ.นันทพงศ์",
+    "category": "Business",
+    "members": [
+      "นายศิรกาญ  กาญจนวิลาสกุล",
+      "นายณัฐดนัย  เทศปัญ",
+      "นายตรีภูมิ  งามศิริสมสุล"
+    ]
   },
   {
-    "name": "A05",
-    "code": "A05",
-    "qrcode": "f6a9a",
-    "description": "ระบบสารสนเทศการบริหารจัดการคลังสินค้าและการจัดเก็บสำหรับร้านค้าขายอาหารแห้ง",
-    "location": "Zone A"
+    "booth_id": "A05",
+    "code": "f6a9a",
+    "project_name": "ระบบสารสนเทศการบริหารจัดการคลังสินค้าและการจัดเก็บสำหรับร้านค้าขายอาหารแห้ง",
+    "project_type": "Capstone Project",
+    "advisor": "อ.กิตติพันธุ์",
+    "category": "Business",
+    "members": [
+      "นายศักดิ์สิทธิ์  ตติไตรสกุล",
+      "นายชนะพล  พันธุวดี",
+      "นายชวินธร  วัฒนาเลิศสกุล"
+    ]
   },
   {
-    "name": "A06",
-    "code": "A06",
-    "qrcode": "6d737",
-    "description": "ระบบจัดการร้านค้าส่งของชำขนาดกลาง (DIBDEE)",
-    "location": "Zone A"
+    "booth_id": "A06",
+    "code": "6d737",
+    "project_name": "ระบบจัดการร้านค้าส่งของชำขนาดกลาง (DIBDEE)",
+    "project_type": "Capstone Project",
+    "advisor": "อ.เกรียงไกร",
+    "category": "Business",
+    "members": [
+      "นางสาวธมลวรรณ  ซิ้มเจริญ",
+      "นางสาวพัชรนันท์  จันทร์ศิริ",
+      "นางสาวพิณงาม  สมบัติศรี"
+    ]
   },
   {
-    "name": "A07",
-    "code": "A07",
-    "qrcode": "489cb",
-    "description": "ระบบจัดการงานสำหรับฟรีแลนซ์",
-    "location": "Zone A"
+    "booth_id": "A07",
+    "code": "489cb",
+    "project_name": "ระบบจัดการงานสำหรับฟรีแลนซ์",
+    "project_type": "Capstone Project",
+    "advisor": "อ.พิเชฏฐ์",
+    "category": "Business",
+    "members": [
+      "นายวงศธร  ตั้งชูเกียรติกุล",
+      "นายวิชิระ  มาตราคำภา",
+      "นายชัยมงคล  ศอกกำปัง"
+    ]
   },
   {
-    "name": "A08",
-    "code": "A08",
-    "qrcode": "e05cb",
-    "description": "แพลตฟอร์มออนไลน์สำหรับการจองคิวและจัดการบริการช่างซ่อม (ช่างชัวร์ ChangSure)",
-    "location": "Zone A"
+    "booth_id": "A08",
+    "code": "e05cb",
+    "project_name": "แพลตฟอร์มออนไลน์สำหรับการจองคิวและจัดการบริการช่างซ่อม (ช่างชัวร์ ChangSure)",
+    "project_type": "Capstone Project",
+    "advisor": "อ.สุณิสา",
+    "category": "Business",
+    "members": [
+      "นางสาวณัฐนรินทร์  ชัยศิริพานิช",
+      "นางสาวธนชนก  บรรจงจินดา",
+      "นายอรินทร์  สุดากิจจาทร"
+    ]
   },
   {
-    "name": "A09",
-    "code": "A09",
-    "qrcode": "45351",
-    "description": "ระบบซื้อขายสินค้าออนไลน์สำหรับนักศึกษา มจธ.",
-    "location": "Zone A"
+    "booth_id": "A09",
+    "code": "45351",
+    "project_name": "ระบบซื้อขายสินค้าออนไลน์สำหรับนักศึกษา มจธ.",
+    "project_type": "Capstone Project",
+    "advisor": "อ.สุณิสา",
+    "category": "Business",
+    "members": [
+      "นายธิติพงศ์  สุดสวนศรี",
+      "นายนิชฌาน  กลกิจ",
+      "นายพสิษฐ์  วิญญาณ"
+    ]
   },
   {
-    "name": "A10",
-    "code": "A10",
-    "qrcode": "ad060",
-    "description": "Craftify เว็บบริการ Minecraft Webstore",
-    "location": "Zone A"
+    "booth_id": "A10",
+    "code": "ad060",
+    "project_name": "Craftify เว็บบริการ Minecraft Webstore",
+    "project_type": "Capstone Project",
+    "advisor": "อ.สนิท",
+    "category": "Business",
+    "members": [
+      "นายก้องภพ  พันธุ์กุ่ม",
+      "นายวัชระ  สันทวี",
+      "นายชนาธิป  อินทร์สุ่ม"
+    ]
   },
   {
-    "name": "A11",
-    "code": "A11",
-    "qrcode": "37b5b",
-    "description": "โครงการพัฒนาแพลตฟอร์มออนไลน์เพื่อการซื้อขายสินค้าดิจิทัลสำหรับนักพัฒนา",
-    "location": "Zone A"
+    "booth_id": "A11",
+    "code": "37b5b",
+    "project_name": "โครงการพัฒนาแพลตฟอร์มออนไลน์เพื่อการซื้อขายสินค้าดิจิทัลสำหรับนักพัฒนา",
+    "project_type": "Capstone Project",
+    "advisor": "อ.สนิท",
+    "category": "Business",
+    "members": [
+      "นางสาวหทัยทัต  แย้มชมชื่น",
+      "นายอนวัตร  กรุดธูป",
+      "นายธีรธร  เที่ยงธรรม"
+    ]
   },
   {
-    "name": "A12",
-    "code": "A12",
-    "qrcode": "91bec",
-    "description": "ระบบการจัดทริปและแนะนำการท่องเที่ยวอัจฉริยะ (ยักษ์เที่ยว)",
-    "location": "Zone A"
+    "booth_id": "A12",
+    "code": "91bec",
+    "project_name": "ระบบการจัดทริปและแนะนำการท่องเที่ยวอัจฉริยะ (ยักษ์เที่ยว)",
+    "project_type": "Capstone Project",
+    "advisor": "อ.สยาม",
+    "category": "Business",
+    "members": [
+      "นายจิตติพัฒน์  พลหาร",
+      "นายจิรพัส  จันทร์พงษ์",
+      "นายพีรพัฒน์  ธีรชัยศุภกิจ"
+    ]
   },
   {
-    "name": "B01",
-    "code": "B01",
-    "qrcode": "83aa0",
-    "description": "ระบบบริหารจัดการงานกิจกรรม SIT",
-    "location": "Zone B"
+    "booth_id": "B01",
+    "code": "83aa0",
+    "project_name": "ระบบบริหารจัดการงานกิจกรรม SIT",
+    "project_type": "Capstone Project",
+    "advisor": "อ.ตุลย์",
+    "category": "Education",
+    "members": [
+      "นายเจตนิพัทธ์  สารกาล",
+      "นายพรชัย  แก้วกระบิล",
+      "นายภานุวัฒน์  วงษ์กระจ่าง"
+    ]
   },
   {
-    "name": "B02",
-    "code": "B02",
-    "qrcode": "744d1",
-    "description": "School Management System (SMS)",
-    "location": "Zone B"
+    "booth_id": "B02",
+    "code": "744d1",
+    "project_name": "School Management System (SMS)",
+    "project_type": "Capstone Project",
+    "advisor": "อ.อุมาพร",
+    "category": "Education",
+    "members": [
+      "นางสาวจิรนันท์  เย็นลับ",
+      "นายปรมะ  จิราศุภดิลก",
+      "นายพุทธินันท์  ภาคแสวง"
+    ]
   },
   {
-    "name": "B03",
-    "code": "B03",
-    "qrcode": "3f572",
-    "description": "ระบบ Chatbot ตอบคำถามและแนะนำข้อมูลสำหรับสาขาเทคโนโลยีสารสนเทศ (AskIT)",
-    "location": "Zone B"
+    "booth_id": "B03",
+    "code": "3f572",
+    "project_name": "ระบบ Chatbot ตอบคำถามและแนะนำข้อมูลสำหรับสาขาเทคโนโลยีสารสนเทศ (AskIT)",
+    "project_type": "Capstone Project",
+    "advisor": "อ.โอฬาร",
+    "category": "Education",
+    "members": [
+      "นายกันตพงศ์  พลมณี",
+      "นางสาวเบญญาพร  แสงเขียว",
+      "นายปิติชัย  ลิมป์สุชาลี"
+    ]
   },
   {
-    "name": "B04",
-    "code": "B04",
-    "qrcode": "2d12e",
-    "description": "โครงการพัฒนาทักษะการคิดเชิงวิพากษ์ผ่านแพลตฟอร์มเกมการเรียนรู้ร่วมกับ AI",
-    "location": "Zone B"
+    "booth_id": "B04",
+    "code": "2d12e",
+    "project_name": "โครงการพัฒนาทักษะการคิดเชิงวิพากษ์ผ่านแพลตฟอร์มเกมการเรียนรู้ร่วมกับ AI",
+    "project_type": "Capstone Project",
+    "advisor": "อ.กิตติพันธุ์",
+    "category": "Education",
+    "members": [
+      "นายกันดิศ  ขาวมีศรี",
+      "นายจิณณวัตร  วิไลรัตน์",
+      "นายภัทรดนัย  ศรีชน"
+    ]
   },
   {
-    "name": "B05",
-    "code": "B05",
-    "qrcode": "ec2cb",
-    "description": "แพลตฟอร์มเพื่อการนำเสนอและต่อยอดไอเดียสู่โปรเจคสำหรับนักศึกษา",
-    "location": "Zone B"
+    "booth_id": "B05",
+    "code": "ec2cb",
+    "project_name": "แพลตฟอร์มเพื่อการนำเสนอและต่อยอดไอเดียสู่โปรเจคสำหรับนักศึกษา",
+    "project_type": "Capstone Project",
+    "advisor": "อ.เกรียงไกร",
+    "category": "Education",
+    "members": [
+      "นายภูวเมศฐ์  ปัญจเฉลิมรัตน์",
+      "นายสรวิชญ์  เครือคำ",
+      "นายกิตติพัฒน์  บัวลอยลม"
+    ]
   },
   {
-    "name": "B06",
-    "code": "B06",
-    "qrcode": "d2406",
-    "description": "ระบบวิเคราะห์และค้นหาสายงานที่เหมาะสมสําหรับนักศึกษาสายเทคโนโลยีสารสนเทศ",
-    "location": "Zone B"
+    "booth_id": "B06",
+    "code": "d2406",
+    "project_name": "ระบบวิเคราะห์และค้นหาสายงานที่เหมาะสมสําหรับนักศึกษาสายเทคโนโลยีสารสนเทศ",
+    "project_type": "Capstone Project",
+    "advisor": "อ.พิเชฏฐ์",
+    "category": "Education",
+    "members": [
+      "นายธนวินท์  กีรติเกษมสุข",
+      "นางสาวพาณิภัค  จงศิริวาณิช",
+      "นางสาวแพรไหม  วรรณศิริ"
+    ]
   },
   {
-    "name": "B07",
-    "code": "B07",
-    "qrcode": "db625",
-    "description": "ระบบหาที่ฝึกงาน/หางานสำหรับนักศึกษามหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี",
-    "location": "Zone B"
+    "booth_id": "B07",
+    "code": "db625",
+    "project_name": "ระบบหาที่ฝึกงาน/หางานสำหรับนักศึกษามหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี",
+    "project_type": "Capstone Project",
+    "advisor": "อ.พิเชฏฐ์",
+    "category": "Education",
+    "members": [
+      "นายศรัณยู  สุโพธิ์ไขย์",
+      "นางสาวอินทร์ริตา  วราจิรวิโรจน์",
+      "นางสาววริษา  เทียมทอง"
+    ]
   },
   {
-    "name": "B08",
-    "code": "B08",
-    "qrcode": "5bfe0",
-    "description": "ระบบช่วยจำอัจฉริยะเพื่อการเรียนรู้อย่างมีประสิทธิภาพ (Memopus)",
-    "location": "Zone B"
+    "booth_id": "B08",
+    "code": "5bfe0",
+    "project_name": "ระบบช่วยจำอัจฉริยะเพื่อการเรียนรู้อย่างมีประสิทธิภาพ (Memopus)",
+    "project_type": "Capstone Project",
+    "advisor": "อ.สยาม",
+    "category": "Education",
+    "members": [
+      "นายกรณัฐ  ฤดีเจริญ",
+      "นางสาวนัทธมน  ทองคำอ้น",
+      "นางสาวณัฐธิดา  รุ่งเรือง"
+    ]
   },
   {
-    "name": "B09",
-    "code": "B09",
-    "qrcode": "b7721",
-    "description": "KMUTT Station: ระบบ content on-demand เพื่องานประชาสัมพันธ์มหาวิทยาลัย",
-    "location": "Zone B"
+    "booth_id": "B09",
+    "code": "b7721",
+    "project_name": "KMUTT Station: ระบบ content on-demand เพื่องานประชาสัมพันธ์มหาวิทยาลัย",
+    "project_type": "Capstone Project",
+    "advisor": "อ.สยาม",
+    "category": "Education",
+    "members": [
+      "นายชนกานต์  เครือหงษ์",
+      "นายณัฐภัทร  เลิศศิริพงศ์พันธ์",
+      "นายพสิษธ์  อุดมพานิช"
+    ]
   },
   {
-    "name": "C01",
-    "code": "C01",
-    "qrcode": "132bf",
-    "description": "การพัฒนาระบบประเมินและจัดอันดับความมั่นคงปลอดภัยของเว็บไซต์มหาวิทยาลัยในประเทศไทยโดยอ้างอิงการวิเคราะห์ค่าการตั้งค่าที่เปิดเผยต่อสาธารณะ",
-    "location": "Zone C"
+    "booth_id": "C01",
+    "code": "132bf",
+    "project_name": "การพัฒนาระบบประเมินและจัดอันดับความมั่นคงปลอดภัยของเว็บไซต์มหาวิทยาลัยในประเทศไทยโดยอ้างอิงการวิเคราะห์ค่าการตั้งค่าที่เปิดเผยต่อสาธารณะ",
+    "project_type": "Research Project",
+    "advisor": "อ.ตุลย์",
+    "category": "Research",
+    "members": [
+      "นายนิติศักดิ์ แข่งขัน",
+      "พงศพัศ เจริญจรัสกุล",
+      "พชรดล แตงพลับ"
+    ]
   },
   {
-    "name": "C02",
-    "code": "C02",
-    "qrcode": "371e0",
-    "description": "ระบบเข้ารหัสข้อความและการวิเคราะห์ความมั่นคงปลอดภัยโดยใช้การสลับคีย์บอร์ดไทย-อังกฤษ",
-    "location": "Zone C"
+    "booth_id": "C02",
+    "code": "371e0",
+    "project_name": "ระบบเข้ารหัสข้อความและการวิเคราะห์ความมั่นคงปลอดภัยโดยใช้การสลับคีย์บอร์ดไทย-อังกฤษ",
+    "project_type": "Research Project",
+    "advisor": "อ.ตุลย์",
+    "category": "Research",
+    "members": [
+      "นายศิรภัทร  ศิลสว่าง",
+      "นายธนกร  วงษ์คนดี"
+    ]
   },
   {
-    "name": "C03",
-    "code": "C03",
-    "qrcode": "0dfab",
-    "description": "การรู้จำอารมณ์ของตัวละคร ผ่านการเล่าเรื่องในบทละครโทรทัศน์ ด้วยปัญญาประดิษฐ์",
-    "location": "Zone C"
+    "booth_id": "C03",
+    "code": "0dfab",
+    "project_name": "การรู้จำอารมณ์ของตัวละคร ผ่านการเล่าเรื่องในบทละครโทรทัศน์ ด้วยปัญญาประดิษฐ์",
+    "project_type": "Research Project",
+    "advisor": "อ.ปัณณรัศม์",
+    "category": "Research",
+    "members": [
+      "นายกฤติชัย  ฉิมฉาย",
+      "ธเนศ ธัญญะพานิช",
+      "นายนทีธาร  ลิขิตวิวัฒน์พงศ์"
+    ]
   },
   {
-    "name": "C04",
-    "code": "C04",
-    "qrcode": "34a44",
-    "description": "การสร้างฟังก์ชั่นจับคู่สีสำหรับผลิตภัณฑ์อาหารจากการพิมพ์อาหาร 3 มิติ",
-    "location": "Zone C"
+    "booth_id": "C04",
+    "code": "34a44",
+    "project_name": "การสร้างฟังก์ชั่นจับคู่สีสำหรับผลิตภัณฑ์อาหารจากการพิมพ์อาหาร 3 มิติ",
+    "project_type": "Research Project",
+    "advisor": "อ.ปัณณรัศม์",
+    "category": "Research",
+    "members": [
+      "ชิษณุชา เชิงสมอ",
+      "นลินี นิลทองคำ",
+      "วีราพัชร์ ดุจยงธรรมคุณ"
+    ]
   },
   {
-    "name": "C05",
-    "code": "C05",
-    "qrcode": "12754",
-    "description": "Comparative Study for Course Recommendation System",
-    "location": "Zone C"
+    "booth_id": "C05",
+    "code": "12754",
+    "project_name": "Comparative Study for Course Recommendation System",
+    "project_type": "Research Project",
+    "advisor": "อ.อุมาพร",
+    "category": "Research",
+    "members": [
+      "ณัฐศรัณย์ แซ่อึ่ง",
+      "ปภังกร กิจสกุลรัตน์",
+      "อัครวิทย์ สิทธิประการ"
+    ]
   },
   {
-    "name": "D01",
-    "code": "D01",
-    "qrcode": "779c5",
-    "description": "เกมเพื่อการเรียนรู้เชิงปฏิสัมพันธ์เพื่อพัฒนาการตัดสินใจในการควบคุมโรคแอนแทรกซ์",
-    "location": "Zone D"
+    "booth_id": "D01",
+    "code": "779c5",
+    "project_name": "เกมเพื่อการเรียนรู้เชิงปฏิสัมพันธ์เพื่อพัฒนาการตัดสินใจในการควบคุมโรคแอนแทรกซ์",
+    "project_type": "Capstone Project",
+    "advisor": "อ.ปัณณรัศม์",
+    "category": "Healthcare",
+    "members": [
+      "นายชนะพล  เอื้อเฟื้อ",
+      "นายปัณณวัฒน์  ศรีภา",
+      "นายภูธร  เพ็ชรโยธา"
+    ]
   },
   {
-    "name": "D02",
-    "code": "D02",
-    "qrcode": "f29bc",
-    "description": "ระบบการจัดการล้างไตอย่างเป็นระบบ (NephroFlow)",
-    "location": "Zone D"
+    "booth_id": "D02",
+    "code": "f29bc",
+    "project_name": "ระบบการจัดการล้างไตอย่างเป็นระบบ (NephroFlow)",
+    "project_type": "Capstone Project",
+    "advisor": "อ.โอฬาร",
+    "category": "Healthcare",
+    "members": [
+      "นายธิติพัทธ์  ธนันต์ชัยนพเก้า",
+      "นายนภทีป์  จันทร์อินทร์",
+      "นายภาคิณ  บุญทา"
+    ]
   },
   {
-    "name": "D03",
-    "code": "D03",
-    "qrcode": "51b1b",
-    "description": "ระบบจัดการดูแลผู้สูงอายุและผู้ป่วยร่วมกันบนแพลตฟอร์ม LINE (ห่วงใย)",
-    "location": "Zone D"
+    "booth_id": "D03",
+    "code": "51b1b",
+    "project_name": "ระบบจัดการดูแลผู้สูงอายุและผู้ป่วยร่วมกันบนแพลตฟอร์ม LINE (ห่วงใย)",
+    "project_type": "Capstone Project",
+    "advisor": "อ.กิตติพันธุ์",
+    "category": "Healthcare",
+    "members": [
+      "นางสาวณัฐวรรณ  คุ้มเผ่า",
+      "นายภูริกรณ์  แสงสุวรรณ์",
+      "นายปรเมษฐ์  วิญญุนาวรรณ"
+    ]
   },
   {
-    "name": "D04",
-    "code": "D04",
-    "qrcode": "f727a",
-    "description": "ระบบบริหารจัดการการนัดหมายของผู้เข้ารับบริการสำหรับคลินิกทันตกรรม",
-    "location": "Zone D"
+    "booth_id": "D04",
+    "code": "f727a",
+    "project_name": "ระบบบริหารจัดการการนัดหมายของผู้เข้ารับบริการสำหรับคลินิกทันตกรรม",
+    "project_type": "Capstone Project",
+    "advisor": "อ.อันฮวา",
+    "category": "Healthcare",
+    "members": [
+      "นางสาววรนุช  นริศเนตร",
+      "นางสาวศิริวรรณ  โห้สารี",
+      "นายอัชมาวีย์  สนูวงศ์"
+    ]
   },
   {
-    "name": "E01",
-    "code": "E01",
-    "qrcode": "e7e7d",
-    "description": "แอปพลิเคชันติดตามพฤติกรรมการกินของแมวด้วยชามอัจฉริยะ",
-    "location": "Zone E"
+    "booth_id": "E01",
+    "code": "e7e7d",
+    "project_name": "แอปพลิเคชันติดตามพฤติกรรมการกินของแมวด้วยชามอัจฉริยะ",
+    "project_type": "Capstone Project",
+    "advisor": "อ.ชัยธวัช",
+    "category": "Lifestyle",
+    "members": [
+      "นายติณณภพ  เทียนบาง",
+      "นางสาววนัสนันท์  ตรีอภิบาลวงศา",
+      "นายสิทธา  มานิตยกุล"
+    ]
   },
   {
-    "name": "E02",
-    "code": "E02",
-    "qrcode": "d1347",
-    "description": "ระบบวางแผนการท่องเที่ยวสำหรับการเดินทางภายในประเทศไทย",
-    "location": "Zone E"
+    "booth_id": "E02",
+    "code": "d1347",
+    "project_name": "ระบบวางแผนการท่องเที่ยวสำหรับการเดินทางภายในประเทศไทย",
+    "project_type": "Capstone Project",
+    "advisor": "อ.มนตรี",
+    "category": "Lifestyle",
+    "members": [
+      "นายชินภัทร  โลหแสงสุวรรณ",
+      "นายพุฒินัฐ  เลิศเวช",
+      "นางสาวลลิตา  เบญจมานุกูล"
+    ]
   },
   {
-    "name": "E03",
-    "code": "E03",
-    "qrcode": "1454e",
-    "description": "แพลตฟอร์มดูแลสุขภาพสัตว์เลี้ยงแบบเฉพาะเจาะจงสำหรับการบันทึกติดตามแจ้งเตือนและวางแผนการดูแลด้วย AI",
-    "location": "Zone E"
+    "booth_id": "E03",
+    "code": "1454e",
+    "project_name": "แพลตฟอร์มดูแลสุขภาพสัตว์เลี้ยงแบบเฉพาะเจาะจงสำหรับการบันทึกติดตามแจ้งเตือนและวางแผนการดูแลด้วย AI",
+    "project_type": "Capstone Project",
+    "advisor": "อ.โอฬาร",
+    "category": "Lifestyle",
+    "members": [
+      "นางสาวแพรพิไล  ชัยมงคลงาม",
+      "นายอิสมัต  บุญมาเลิศ",
+      "นางสาวมัณฑนา  คชรินทร์"
+    ]
   },
   {
-    "name": "E04",
-    "code": "E04",
-    "qrcode": "bf3d2",
-    "description": "เว็บแอปพลิเคชันสำหรับบันทึกเรื่องราวและอารมณ์ส่วนตัว",
-    "location": "Zone E"
+    "booth_id": "E04",
+    "code": "bf3d2",
+    "project_name": "เว็บแอปพลิเคชันสำหรับบันทึกเรื่องราวและอารมณ์ส่วนตัว",
+    "project_type": "Capstone Project",
+    "advisor": "อ.กิตติพันธุ์",
+    "category": "Lifestyle",
+    "members": [
+      "นายทัศน์พล  เถื่อนชำนาญ",
+      "นายนพกฤษฏิ์  นิธิชัยสถิตย์",
+      "นางสาวรติกร  ดำเกิงลัภนวณิช"
+    ]
   },
   {
-    "name": "E05",
-    "code": "E05",
-    "qrcode": "26e2b",
-    "description": "แอปพลิเคชันหาคู่ พูดคุยทําความรู้จัก ก่อนการพบปะนอกสถานที่",
-    "location": "Zone E"
+    "booth_id": "E05",
+    "code": "26e2b",
+    "project_name": "แอปพลิเคชันหาคู่ พูดคุยทําความรู้จัก ก่อนการพบปะนอกสถานที่",
+    "project_type": "Capstone Project",
+    "advisor": "อ.สนิท",
+    "category": "Lifestyle",
+    "members": [
+      "นายวริทธิ์ธร  สิริวัชระกุล",
+      "นางสาวใบตอง  แซ่โค้ว",
+      "นางสาวอภิสรา  ชลประสิทธิ์"
+    ]
   },
   {
-    "name": "E06",
-    "code": "E06",
-    "qrcode": "51afa",
-    "description": "Fanato (The Financial Assistance)",
-    "location": "Zone E"
+    "booth_id": "E06",
+    "code": "51afa",
+    "project_name": "Fanato (The Financial Assistance)",
+    "project_type": "Capstone Project",
+    "advisor": "อ.สยาม",
+    "category": "Lifestyle",
+    "members": [
+      "นายชนะชัย  ใหม่น้อย",
+      "นายมณฑล  มักคุ้น",
+      "นายบุณยกร  พรสมบัติไพบูลย์"
+    ]
   },
   {
-    "name": "E07",
-    "code": "E07",
-    "qrcode": "99e39",
-    "description": "แอปพลิเคชั่นจดบันทึกรายจ่าย (มดจด)",
-    "location": "Zone E"
+    "booth_id": "E07",
+    "code": "99e39",
+    "project_name": "แอปพลิเคชั่นจดบันทึกรายจ่าย (มดจด)",
+    "project_type": "Capstone Project",
+    "advisor": "อ.สยาม",
+    "category": "Lifestyle",
+    "members": [
+      "นางสาวญาดา  เจนรุ่งโรจน์สกุล",
+      "นายนิรพันธ์  ดวงใจรักเกษม",
+      "นายณัฐพล  นิรัตติศัยกุล"
+    ]
   },
   {
-    "name": "E08",
-    "code": "E08",
-    "qrcode": "d6f62",
-    "description": "Lifestyle, Activity & Community Platform",
-    "location": "Zone E"
+    "booth_id": "E08",
+    "code": "d6f62",
+    "project_name": "Lifestyle, Activity & Community Platform",
+    "project_type": "Capstone Project",
+    "advisor": "อ.นันทพงศ์",
+    "category": "Lifestyle",
+    "members": [
+      "นายจักรธร  สอวิเศษ",
+      "นางสาวพิมพ์พิชญา  แก้วแสง",
+      "นายภูมิระพี  ไชยสา"
+    ]
   },
   {
-    "name": "E09",
-    "code": "E09",
-    "qrcode": "5f6a4",
-    "description": "ระบบช่วยวางแผนการใช้เงิน (financeCare)",
-    "location": "Zone E"
+    "booth_id": "E09",
+    "code": "5f6a4",
+    "project_name": "ระบบช่วยวางแผนการใช้เงิน (financeCare)",
+    "project_type": "Capstone Project",
+    "advisor": "อ.มนตรี",
+    "category": "Lifestyle",
+    "members": [
+      "นายภูริ  ไชยนิคม",
+      "นายสรณัฐ  เเสงรุ่งเรือง",
+      "นายลัทธวิทย์  กทิศาสตร์"
+    ]
   }
 ]
