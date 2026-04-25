@@ -3,17 +3,18 @@ const boothRepo = require('../repositories/booth.repository.js');
 const { STAMP_THRESHOLD } = require('../constants/stamp.constant.js');
 const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode.js');
 const { ERROR_MESSAGE } = require('../constants/message.constant.js');
+const voteRepo = require('../repositories/vote.repository.js');
 
 const getStampCount = async (userId, role) => {
   const stampCount = await stampRepo.countStampsByUserId(userId);
 
-  const requiredStamps = STAMP_THRESHOLD[role] || 99;
+  const requiredStamps = await voteRepo.getRoleThreshold(role) || 99;
 
-  const canVote = stampCount >= STAMP_THRESHOLD[role];
+  const canVote = stampCount >= requiredStamps;
 
   return {
     stampCount,
-    requiredStamps,
+    requiredStamps: requiredStamps.required_stamps,
     role,
     canVote,
   };
@@ -44,6 +45,8 @@ const createStamp = async (userId, code) => {
       message: ERROR_MESSAGE.BOOTH_NOT_FOUND,
     };
   }
+  console.log(booth);
+  console.log(booth.id);
 
   const isAlreadyStamped = await stampRepo.findByUserAndBoothCode(userId, code);
   if (isAlreadyStamped) {

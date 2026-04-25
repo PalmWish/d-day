@@ -8,8 +8,8 @@ const createError = (statusCode, message, details = null) => {
   return error;
 };
 
-const processVote = async (userId, userRole, boothId) => {
-  const booth = await voteRepository.findBoothById(boothId);
+const processVote = async (userId, userRole, code) => {
+  const booth = await voteRepository.findBoothByCode(code);
   if (!booth) throw createError(HTTP_STATUS_CODE.NOT_FOUND, 'BOOTH_NOT_FOUND');
 
   const period = await voteRepository.getPeriodConfig('VOTING');
@@ -22,13 +22,14 @@ const processVote = async (userId, userRole, boothId) => {
     voteRepository.countUserStamps(userId),
     voteRepository.getRoleThreshold(userRole),
   ]);
+  
   if (!threshold || userStampCount < threshold.required_votes) {
     throw createError(HTTP_STATUS_CODE.FORBIDDEN, 'INSUFFICIENT_STAMPS');
   }
 
   const hasStamped = await voteRepository.checkUserStampOnBooth(
     userId,
-    boothId
+    booth.id
   );
   if (!hasStamped)
     throw createError(
@@ -38,7 +39,7 @@ const processVote = async (userId, userRole, boothId) => {
 
   const { vote, isNewRecord } = await voteRepository.upsertVote(
     userId,
-    boothId
+    booth.id
   );
 
   return {
@@ -58,9 +59,7 @@ const getMyVote = async (userId) => {
 
   return {
     boothId: vote.booth_id,
-    booth: {
-      name: vote.booth.name,
-    },
+    booth: vote.booth,
     voteAt: vote.voted_at,
   };
 };

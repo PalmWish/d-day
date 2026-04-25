@@ -2,6 +2,8 @@ const prisma = require('../config/prisma');
 
 const findBoothById = (id) => prisma.booth.findUnique({ where: { id } });
 
+const findBoothByCode = (code) => prisma.booth.findUnique({ where: { code } });
+
 const getPeriodConfig = (type) =>
   prisma.periodConfig.findUnique({ where: { type } });
 
@@ -51,6 +53,7 @@ const findVoteByUserId = (userId) => {
 
 module.exports = {
   findBoothById,
+  findBoothByCode,
   getPeriodConfig,
   countUserStamps,
   getRoleThreshold,

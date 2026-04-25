@@ -40,7 +40,7 @@ const findOneWithUserStamp = async (boothId, userId) => {
     userId,
   });
   const result = await prisma.booth.findUnique({
-    where: { id: boothId },
+    where: { booth_id: boothId },
     include: {
       stampedBy: {
         where: { user_id: userId },

@@ -7,7 +7,6 @@ const userService = require('../services/user.service.js');
 
 const loginWithMicrosoft = async (req, res) => {
   const authUrl = `${config.microsoft.authEndpoint}?client_id=${config.microsoft.clientId}&response_type=code&redirect_uri=${config.microsoft.redirectUri}&response_mode=query&scope=User.Read`;
-
   res.redirect(authUrl);
 };
 

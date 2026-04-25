@@ -9,7 +9,10 @@ if (!process.env.DATABASE_URL) {
 
 const prisma = require('../src/config/prisma.js');
 
-async function main() {
+// ----------------------------------------------------------------------
+// 1. ฟังก์ชัน Seed ตาราง Booths (รองรับทั้ง JSON และ CSV)
+// ----------------------------------------------------------------------
+async function seedBooths() {
   const fileName = process.argv[2] || 'booths.json';
   const filePath = path.join(process.cwd(), 'data', fileName);
   const fileExtension = path.extname(fileName).toLowerCase();
@@ -55,7 +58,7 @@ async function main() {
     process.exit(1);
   }
 
-  console.log(`\n--- Starting Seeding from ${fileName} ---`);
+  console.log(`\n--- Starting Seeding Booths from ${fileName} ---`);
 
   let insertedCount = 0;
   let updatedCount = 0;
@@ -113,11 +116,87 @@ async function main() {
     }
   }
 
-  console.log('\n--- Seeding Summary ---');
+  console.log('\n--- Booths Seeding Summary ---');
   console.log(`Inserted : ${insertedCount}`);
   console.log(`Updated  : ${updatedCount}`);
   console.log(`Total    : ${insertedCount + updatedCount}`);
-  console.log('-----------------------\n');
+}
+
+// ----------------------------------------------------------------------
+// 2. ฟังก์ชัน Seed ตาราง Role Thresholds
+// ----------------------------------------------------------------------
+async function seedRoleThresholds() {
+  console.log('\n--- Seeding Role Thresholds ---');
+
+  const thresholds = [
+    { role: 'SIT_STUDENT', required_stamps: 6, required_votes: 3 },
+    { role: 'STUDENT',     required_stamps: 6, required_votes: 3 },
+    { role: 'GUEST',       required_stamps: 6, required_votes: 3 },
+    { role: 'ADMIN',       required_stamps: 0, required_votes: 3 },
+  ];
+
+  for (const threshold of thresholds) {
+    try {
+      await prisma.roleThreshold.upsert({
+        where:  { role: threshold.role },
+        update: { required_stamps: threshold.required_stamps, required_votes: threshold.required_votes },
+        create: { role: threshold.role, required_stamps: threshold.required_stamps, required_votes: threshold.required_votes },
+      });
+      console.log(
+        `[UPSERTED]  role: ${threshold.role} | required_stamps: ${threshold.required_stamps} | required_votes: ${threshold.required_votes}`
+      );
+    } catch (error) {
+      console.error(`[ERROR] Failed to seed role threshold for ${threshold.role} —`, error);
+      process.exit(1);
+    }
+  }
+}
+
+// ----------------------------------------------------------------------
+// 3. ฟังก์ชัน Seed ตาราง Period Configs
+// ----------------------------------------------------------------------
+async function seedPeriodConfigs() {
+  console.log('\n--- Seeding Period Configs ---');
+
+  const periods = [
+    {
+      type:     'STAMPING',
+      start_at: new Date('2026-04-27T09:00:00+07:00'),
+      end_at:   new Date('2026-04-27T15:30:00+07:00'),
+    },
+    {
+      type:     'VOTING',
+      start_at: new Date('2026-04-27T09:00:00+07:00'),
+      end_at:   new Date('2026-04-27T15:30:00+07:00'),
+    },
+  ];
+
+  for (const period of periods) {
+    try {
+      await prisma.periodConfig.upsert({
+        where:  { type: period.type },
+        update: { start_at: period.start_at, end_at: period.end_at },
+        create: { type: period.type, start_at: period.start_at, end_at: period.end_at },
+      });
+      console.log(
+        `[UPSERTED]  type: ${period.type} | start: ${period.start_at.toISOString()} → end: ${period.end_at.toISOString()}`
+      );
+    } catch (error) {
+      console.error(`[ERROR] Failed to seed period config for ${period.type} —`, error);
+      process.exit(1);
+    }
+  }
+}
+
+// ----------------------------------------------------------------------
+// 4. Main Execution (รันตามลำดับ)
+// ----------------------------------------------------------------------
+async function main() {
+  await seedBooths();
+  await seedRoleThresholds();
+  await seedPeriodConfigs();
+
+  console.log('\n✅ All 3 tables have been successfully seeded.\n');
 }
 
 main()

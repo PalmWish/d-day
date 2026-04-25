@@ -24,6 +24,7 @@ const getStampCount = async (req, res, next) => {
 const createStamp = async (req, res, next) => {
   try {
     const { userId } = req.user;
+    
     const { boothId } = req.body;
 
     const result = await stampService.createStamp(userId, boothId);

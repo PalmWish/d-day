@@ -28,7 +28,7 @@ const getUserProfileByEmail = async (email) => {
           voteAt: vote.voted_at,
         }
       : null,
-    stampMax: threshold.required_stamps || 0,
+    stampMax: threshold.required_stamps ?? 0,
   };
 };
 
