@@ -22,7 +22,7 @@ const processVote = async (userId, userRole, boothId) => {
     voteRepository.countUserStamps(userId),
     voteRepository.getRoleThreshold(userRole),
   ]);
-  if (!threshold || userStampCount < threshold.required_stamps / 2) {
+  if (!threshold || userStampCount < threshold.required_votes) {
     throw createError(HTTP_STATUS_CODE.FORBIDDEN, 'INSUFFICIENT_STAMPS');
   }
 

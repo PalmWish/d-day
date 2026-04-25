@@ -21,7 +21,7 @@ const getUserProfileByEmail = async (email) => {
     email: user.email,
     name: user.name,
     role: user.role,
-    creditPoints: threshold.required_stamps,
+    creditPoints: threshold.required_stamps || 0,
     stampCount: stampCount ?? 0,
     voteBooth: vote
       ? {

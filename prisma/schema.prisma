@@ -81,6 +81,7 @@ model Vote {
 model RoleThreshold {
   role            Role     @id
   required_stamps Int
+  required_votes Int
   updated_at      DateTime @updatedAt
 
   @@map("role_thresholds")
