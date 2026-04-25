@@ -1,5 +1,5 @@
 const config = require('../config/config.js');
-const authMsService = require('../services/auth-ms.service.js');
+const authMsService = require('../services/auth.ms.service.js');
 const msgConstants = require('../constants/message.constant.js');
 const { HTTP_STATUS_CODE } = require('../constants/httpStatusCode.js');
 const { successResponse, errorResponse } = require('../utils/response.js');
@@ -44,9 +44,9 @@ const microsoftCallback = async (req, res) => {
       maxAge: 24 * 60 * 60 * 1000,
     });
 
-    res.redirect('https://localhost:5173/');
+    // res.redirect('https://localhost:5173/');
 
-    // res.redirect(`${config.frontendUrl}/`);
+    res.redirect(`${config.frontendUrl}/`);
   } catch (err) {
     // console.error('[auth-ms.controller] microsoftCallback failed', {
     //   error: err.message,

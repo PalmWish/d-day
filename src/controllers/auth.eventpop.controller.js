@@ -42,13 +42,14 @@ const eventpopCallback = async (req, res, next) => {
     });
     console.log('eventpop login success');
 
-    return res.status(HTTP_STATUS_CODE.OK).json(
-      successResponse({
-        message: '',
-        data: accessToken,
-        statusCode: HTTP_STATUS_CODE.OK,
-      })
-    );
+    res.redirect(`${config.frontendUrl}/`);
+    // return res.status(HTTP_STATUS_CODE.OK).json(
+    //   successResponse({
+    //     message: '',
+    //     data: accessToken,
+    //     statusCode: HTTP_STATUS_CODE.OK,
+    //   })
+    // );
   } catch (err) {
     console.log("has error");
     
