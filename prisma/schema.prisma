@@ -38,14 +38,16 @@ model User {
 
 model Booth {
   id          String   @id @default(uuid())
-  name        String
-  description String
-  location    String
-  created_at  DateTime @default(now())
+  booth_id     String  @unique
+  project_name String
+  category    String
+  members     String[] 
+  advisor     String
+  project_type    String
   code        String   @unique
-  qrcode      String   @unique
-  stampedBy Stamp[]
-  votes     Vote[]
+  created_at  DateTime @default(now())
+  stampedBy   Stamp[]
+  votes       Vote[]
 
   @@map("booths")
 }
@@ -79,6 +81,7 @@ model Vote {
 model RoleThreshold {
   role            Role     @id
   required_stamps Int
+  required_votes Int
   updated_at      DateTime @updatedAt
 
   @@map("role_thresholds")

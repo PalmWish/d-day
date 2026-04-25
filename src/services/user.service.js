@@ -15,6 +15,7 @@ const getUserProfileByEmail = async (email) => {
 
   const stampCount = await stampRepo.countStampsByUserId(user.id);
   const vote = await voteRepository.findVoteByUserId(user.id);
+  const threshold = await voteRepository.getRoleThreshold(user.role)
   return {
     id: user.id,
     email: user.email,
@@ -27,6 +28,7 @@ const getUserProfileByEmail = async (email) => {
           voteAt: vote.voted_at,
         }
       : null,
+    stampMax: threshold.required_stamps || 0,
   };
 };
 

@@ -1,4 +1,4 @@
-const microsoftRepo = require('../repositories/auth-ms.repository.js');
+const microsoftRepo = require('../repositories/auth.ms.repository.js');
 const jwt = require('jsonwebtoken');
 const config = require('../config/config.js');
 const msgConstants = require('../constants/message.constant.js');

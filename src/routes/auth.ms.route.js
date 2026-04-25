@@ -1,5 +1,5 @@
 const express = require('express');
-const authMsController = require('../controllers/auth-ms.controller.js');
+const authMsController = require('../controllers/auth.ms.controller.js');
 const { verifyToken } = require('../middlewares/auth.middleware.js');
 
 const router = express.Router();

@@ -2,10 +2,7 @@ const prisma = require('../config/prisma');
 
 const getBoothsWithStats = () => {
   return prisma.booth.findMany({
-    select: {
-      id: true,
-      name: true,
-      code: true,
+    include: {
       _count: {
         select: {
           stampedBy: true,

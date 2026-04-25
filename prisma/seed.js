@@ -35,16 +35,18 @@ async function main() {
       }
 
       for (let i = 1; i < lines.length; i++) {
-        const [name, description, location, code, qrcode] = lines[i]
+        const [booth_id, project_name, category, rawMembers, advisor, project_type, code] = lines[i]
           .split(',')
-          .map((v) => v.trim());
+          .map((v) => (v ? v.trim() : ''));
 
         booths.push({
-          name,
-          description: description || 'Booth from CSV',
-          location: location || 'See map',
-          code: code || name,
-          qrcode: qrcode || name,
+          booth_id: booth_id || `UNK-${i}`,
+          project_name: project_name || 'ไม่มีชื่อโปรเจกต์',
+          category: category || 'ไม่ระบุหมวดหมู่',
+          members: rawMembers ? rawMembers.split('|').map(m => m.trim()) : [],
+          advisor: advisor || 'ไม่ระบุอาจารย์ที่ปรึกษา',
+          project_type: project_type || 'ไม่ระบุประเภท',
+          code: code || `CODE-${i}`,
         });
       }
     }
@@ -62,32 +64,48 @@ async function main() {
     const booth = booths[i];
     const lineNumber = i + 1;
 
-    const { name, description, location } = booth;
+    const { booth_id, project_name, category, members, advisor, project_type } = booth;
     const code = (booth.code || '').trim();
-    const qrcode = (booth.qrcode || '').trim();
 
-    if (!name || !description || !location || !code || !qrcode) {
+    if (!booth_id || !project_name || !category || !advisor || !project_type || !code) {
       console.error(
-        `[VALIDATION ERROR] Line ${lineNumber}: Missing required fields — name, description, location, code, qrcode are all required.`
+        `[VALIDATION ERROR] Line ${lineNumber}: Missing required fields — booth_id, project_name, category, advisor, project_type, code.`
       );
       process.exit(1);
     }
+
+    const validMembers = Array.isArray(members) ? members : [];
 
     try {
       const existing = await prisma.booth.findUnique({ where: { code } });
 
       await prisma.booth.upsert({
         where: { code },
-        update: { name, description, location, qrcode },
-        create: { name, description, location, code, qrcode },
+        update: { 
+          booth_id,
+          project_name, 
+          category, 
+          members: validMembers, 
+          advisor, 
+          project_type 
+        },
+        create: { 
+          booth_id,
+          project_name, 
+          category, 
+          members: validMembers, 
+          advisor, 
+          project_type, 
+          code 
+        },
       });
 
       if (existing) {
         updatedCount++;
-        console.log(`[UPDATED]   Line ${lineNumber}: "${name}" | code: ${code} | qrcode: ${qrcode}`);
+        console.log(`[UPDATED]   Line ${lineNumber}: [${booth_id}] "${project_name}" | code: ${code}`);
       } else {
         insertedCount++;
-        console.log(`[INSERTED]  Line ${lineNumber}: "${name}" | code: ${code} | qrcode: ${qrcode}`);
+        console.log(`[INSERTED]  Line ${lineNumber}: [${booth_id}] "${project_name}" | code: ${code}`);
       }
     } catch (error) {
       console.error(`[ERROR] Line ${lineNumber}: Database operation failed — ${error.message}`);
