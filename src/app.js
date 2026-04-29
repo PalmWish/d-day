@@ -6,9 +6,10 @@ const cookieParser = require('cookie-parser');
 
 const config = require('./config/config');
 const routes = require('./routes/index');
-const adminRoute = require('./routes/admin.route');
 
 const app = express();
+
+const { errorHandler, notFound } = require('./middlewares/error.middleware');
 
 app.use(helmet());
 app.use(cors());
@@ -21,5 +22,7 @@ if (config.env !== 'test') {
 }
 
 app.use('/api', routes);
+app.use(notFound);
+app.use(errorHandler);
 
 module.exports = app;

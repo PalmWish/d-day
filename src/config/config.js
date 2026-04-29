@@ -28,10 +28,25 @@ const config = {
     tokenEndpoint: process.env.MICROSOFT_TOKEN_ENDPOINT,
   },
 
+  eventpop: {
+    clientId: process.env.EVENTPOP_APPLICATION_ID,
+    clientSecret: process.env.EVENTPOP_CLIENT_SECRET,
+    callbackUrl: process.env.EVENTPOP_CALLBACK_URL,
+    authEndpoint:
+      process.env.EVENTPOP_AUTH_ENDPOINT,
+    tokenEndpoint:
+      process.env.EVENTPOP_TOKEN_ENDPOINT,
+    profileEndpoint:
+      process.env.EVENTPOP_PROFILE_ENDPOINT,
+    organizerEndpoint:process.env.EVENTPOP_ORGANIZER_ENDPOINT
+  },
+
   DEV: 'dev',
   PRODUCTION: 'prod',
 
-  whiteList: process.env.ADMIN_EMAILS ? process.env.ADMIN_EMAILS.split(',') : []
+  whiteList: process.env.ADMIN_EMAILS
+    ? process.env.ADMIN_EMAILS.split(',')
+    : [],
 };
 
 module.exports = config;

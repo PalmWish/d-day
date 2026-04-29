@@ -9,9 +9,9 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
-    "prepare": "husky",
+    "prepare": "husky || true",
     "test": "echo \"No tests configured yet\" && exit 0",
-    "seed:booths": "node prisma/seed.js"
+    "seed:booths": "node prisma/seed.js booths.json"
   },
   "repository": {
     "type": "git",

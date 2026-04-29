@@ -4,8 +4,7 @@
 // Get a free hosted Postgres database in seconds: `npx create-db`
 
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -39,14 +38,16 @@ model User {
 
 model Booth {
   id          String   @id @default(uuid())
-  name        String
-  description String
-  location    String
-  created_at  DateTime @default(now())
+  booth_id     String  @unique
+  project_name String
+  category    String
+  members     String[] 
+  advisor     String
+  project_type    String
   code        String   @unique
-
-  stampedBy Stamp[]
-  votes     Vote[]
+  created_at  DateTime @default(now())
+  stampedBy   Stamp[]
+  votes       Vote[]
 
   @@map("booths")
 }
@@ -68,7 +69,7 @@ model Vote {
   id         String   @id @default(uuid())
   user_id    String   @unique
   booth_id   String
-  voted_at   DateTime @default(now())
+  voted_at   DateTime @updatedAt
   updated_at DateTime @updatedAt
 
   user  User  @relation(fields: [user_id], references: [id])
@@ -80,6 +81,7 @@ model Vote {
 model RoleThreshold {
   role            Role     @id
   required_stamps Int
+  required_votes Int
   updated_at      DateTime @updatedAt
 
   @@map("role_thresholds")
