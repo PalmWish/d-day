@@ -161,12 +161,12 @@ async function seedPeriodConfigs() {
   const periods = [
     {
       type:     'STAMPING',
-      start_at: new Date('2026-04-27T09:00:00+07:00'),
-      end_at:   new Date('2026-04-27T15:30:00+07:00'),
+      start_at: new Date('2026-04-27T00:00:00+07:00'),
+      end_at:   new Date('2026-04-27T18:00:00+07:00'),
     },
     {
       type:     'VOTING',
-      start_at: new Date('2026-04-27T09:00:00+07:00'),
+      start_at: new Date('2026-04-27T00:00:00+07:00'),
       end_at:   new Date('2026-04-27T15:30:00+07:00'),
     },
   ];
